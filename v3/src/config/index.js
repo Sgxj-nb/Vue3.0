@@ -1,7 +1,8 @@
+// 如果是很多的接口地址的话就可以这个样子写
 module.exports = {
   mock: {
     baseURL: '/dev-api',
-    mockURL: ''
+    mockURL: 'https://mock.xwhx.top'
   },
   local: {
     baseURL: '/dev-api',
@@ -15,4 +16,4 @@ module.exports = {
     baseURL: 'https://api.xwhx.top',
     mockURL: 'https://api.xwhx.top'
   }
-};
+}
