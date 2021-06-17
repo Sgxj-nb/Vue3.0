@@ -1,10 +1,10 @@
-import router from '@/router';
+import router from '@/router'
 
 router.beforeEach(async (to: any, form, next) => {
   // 动态设置title
-  document.title = to.meta.title || '我是vue3的模板项目';
+  document.title = to.meta.title || '我是vue3的模板项目'
 
-  const infoa = localStorage.getItem('token');
+  const infoa = localStorage.getItem('token')
   // 判断是否有token
   if (infoa) {
     if (to.path === '/loading') {
@@ -12,6 +12,6 @@ router.beforeEach(async (to: any, form, next) => {
       next({ path: '/' })
     }
   } else {
-    next();
+    next()
   }
 })
