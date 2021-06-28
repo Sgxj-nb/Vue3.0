@@ -6,11 +6,13 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.48",
     "eslint": "^7.29.0",
     "eslint-define-config": "^1.0.8",
+    "qs": "^6.10.1",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.9"
+    "vue-router": "^4.0.0-beta.9"
   },
   "devDependencies": {
     "@vitejs/plugin-legacy": "^1.4.1",

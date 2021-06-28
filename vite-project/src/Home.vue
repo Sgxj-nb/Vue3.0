@@ -28,10 +28,15 @@
 
   <!-- 测试组件传值 -->
   <div>
-    <Hie @shiwinfo="shiwinfo" :numaaa="num"></Hie>
+    <Hie ref="showifo" @shiwinfo="shiwinfo" :numaaa="num" @namess="names"></Hie>
   </div>
   <div>
     {{ num }}
+  </div>
+
+  <!-- 父组件调取子组件方法 -->
+  <div>
+    <el-button type="primary" @click="fuadd">我是父组件</el-button>
   </div>
 </template>
 <script lang="ts">
@@ -60,16 +65,30 @@ export default defineComponent({
       queryinfo.info = {};
     }
     let num = ref(0);
-    function shiwinfo(e: any) { // 捕获子组件点击事件传递过来的值
+    function shiwinfo(e: any) {
+      // 捕获子组件点击事件传递过来的值
       num.value = e.name; // 通过点击事件传值去子组件
       console.log(num.value);
     }
 
+    // 父组件调取子组件的方法
+    const showifo = ref(); // 类名必须和组件上的ref相同且是一个响应式数据(且暴露出去)
+    function fuadd() {
+      showifo.value.adinfo();
+    }
+
+    // 子组件需要调取的事件
+    function names() {
+      console.log('我是父组件但是我被子组件调用了');
+    }
     return {
       queryinfo,
       add,
       shiwinfo,
-      num
+      num,
+      names,
+      showifo,
+      fuadd
     };
   }
 });

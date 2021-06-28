@@ -6,6 +6,10 @@
   </div>
 
   <div>我是父组件传过来的值-{{ numaaa }}</div>
+  <!-- 子组件调取父组件的方法 -->
+  <div>
+    <el-button type="primary" @click="names">我是子组件</el-button>
+  </div>
 </template>
 <script lang="ts">
 import { reactive, defineComponent, ref } from 'vue';
@@ -26,13 +30,24 @@ export default defineComponent({
     let showifo = reactive({
       num
     });
-    // 通过点击事件来传值去父组件 
+    // 通过点击事件来传值去父组件
     function add(e: any) {
       context.emit('shiwinfo', { name: e.name });
     }
+    // 调取父组件的方法
+    function names() {
+      context.emit('namess');
+    }
+
+    // 父组件调取的事件
+    function adinfo() {
+      console.log('我是子组件', '我被父组件调用');
+    }
     return {
       info,
-      add
+      add,
+      names,
+      adinfo
     };
   }
 });
