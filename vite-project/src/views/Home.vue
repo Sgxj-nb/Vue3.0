@@ -21,6 +21,7 @@ export default defineComponent({
     }
   },
   setup(props, context) {
+    console.log(props.numaaa);// 父组件传值过来的值我来呈现
     let info = reactive({
       info: [{ name: '2' }, { name: '3' }]
     });
