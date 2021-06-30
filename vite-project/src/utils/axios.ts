@@ -1,9 +1,10 @@
 import axios, { AxiosInstance } from 'axios';
-
+const config = require('../../config');
+const { baseURL } = config['process.env.NODE_ENV']
 let token = localStorage.getItem('token');
 // 创建实例
 const service: AxiosInstance = axios.create({
-  // 接口地址
+  baseURL, // 接口地址
   timeout: 200000//超时时间
 });
 
