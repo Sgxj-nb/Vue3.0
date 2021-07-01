@@ -1,25 +1,10 @@
-/**
- * @判断用户是否登陆
- * */
+import request from "./axios";
+// 需要什么请求就用什么请求 在界面局部导入即可
 
-import { AxiosRequestConfig } from 'axios';
-import sevice from './axios';
-
-interface BaseRese<T> {
-  code: number,
-  status: boolean,
-  data: T,
-  message?: string
-}
-
-const request = <T>(config: AxiosRequestConfig): Promise<BaseRese<T>> => {
-  return new Promise((resp, reject) => {
-    sevice.request<BaseRese<T>>(config).then(res => {
-      resp(res.data);
-    }, err => {
-      reject(err);
-    })
+export function mallGoodsDetailAPI(params: object) {
+  return request({
+    url: '/?s=App.Group.Activity',
+    method: 'post',
+    params
   })
 }
-
-export default request;

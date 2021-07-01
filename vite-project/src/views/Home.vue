@@ -12,6 +12,7 @@
   </div>
 </template>
 <script lang="ts">
+import { mallGoodsDetailAPI } from '../utils/request';
 import { reactive, defineComponent, ref } from 'vue';
 export default defineComponent({
   name: 'App',
@@ -21,7 +22,14 @@ export default defineComponent({
     }
   },
   setup(props, context) {
-    console.log(props.numaaa);// 父组件传值过来的值我来呈现
+    // 接口请求演示
+    function xuanran() {
+      mallGoodsDetailAPI({ group_id: '1' }).then((res: any) => {
+        console.log(res);
+      });
+    }
+    xuanran();
+    console.log(props.numaaa); // 父组件传值过来的值我来呈现
     let info = reactive({
       info: [{ name: '2' }, { name: '3' }]
     });
