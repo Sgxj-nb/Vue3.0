@@ -21,14 +21,15 @@ export default defineComponent({
       type: String
     }
   },
+  methods: {},
   setup(props, context) {
-    // 接口请求演示
+    // 接口请求演示(局部)
     function xuanran() {
       mallGoodsDetailAPI({ group_id: '1' }).then((res: any) => {
         console.log(res);
       });
     }
-    xuanran();
+    // xuanran();
     console.log(props.numaaa); // 父组件传值过来的值我来呈现
     let info = reactive({
       info: [{ name: '2' }, { name: '3' }]
@@ -39,6 +40,7 @@ export default defineComponent({
     let showifo = reactive({
       num
     });
+
     // 通过点击事件来传值去父组件
     function add(e: any) {
       context.emit('shiwinfo', { name: e.name });

@@ -7,6 +7,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Home,
   },
+  {
+    path: '/views/message',
+    name: 'message',
+    component: () => import('../views/Message.vue')
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),

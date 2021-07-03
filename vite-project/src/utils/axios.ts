@@ -1,7 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 // const config = require('../../config');
 // const { baseURL } = config[process.env.NODE_ENV]
-let token = '5746zI7RsT3DuKUob+Ys33EtQ9tomo8hs57aPX0o';
 let baseURL = 'http://yepao.api.com'
 // 创建实例
 // const service: AxiosInstance = axios.create({
@@ -16,11 +15,15 @@ const service = axios.create({
   // },
 });
 
+// 是否有token
+
+let token: any = localStorage.getItem('token');
+
 // 请求拦截器
 service.interceptors.request.use(config => {
   // 如果本地有token的话就直接
   if (token) {
-    config.headers['Token'] = token;
+    config.headers['Authorization'] = token;
   }
   return config;
 }, error => {

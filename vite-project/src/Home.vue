@@ -7,10 +7,13 @@
       </div>
       <div>
         <el-form :model="queryinfo">
-          <el-form-item label="">
-            <el-input v-model="queryinfo.info.name" placeholder=""></el-input>
+          <el-form-item label="账号密码">
+            <el-input
+              v-model="queryinfo.info.username"
+              placeholder=""
+            ></el-input>
           </el-form-item>
-          <el-form-item label="">
+          <el-form-item label="密码">
             <el-input
               v-model="queryinfo.info.password"
               placeholder=""
@@ -38,19 +41,28 @@
   <div>
     <el-button type="primary" @click="fuadd">我是父组件</el-button>
   </div>
+
+  <!-- 跳转到数据界面 -->
+  <div>
+    <el-button type="primary" @click="addshowinfop">跳转</el-button>
+  </div>
 </template>
 <script lang="ts">
 import Hie from './views/Home.vue';
-import { defineComponent, reactive, ref } from 'vue';
+import { defineComponent, reactive, ref, inject } from 'vue';
+import { Loagin, Qufi } from './utils/request';
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'App',
   components: {
     Hie
   },
   setup() {
+    const router = useRouter();
     let queryinfo: any = reactive({
       info: {
-        name: '',
+        username: '',
         password: ''
       },
       showinfo: [
@@ -61,9 +73,18 @@ export default defineComponent({
         { name: '数组1' }
       ]
     });
+
+    // 用户登陆
     function add() {
-      queryinfo.info = {};
+      Loagin(queryinfo.info).then(function (res: any) {
+        if (res.code == 200) {
+          localStorage.setItem('token', res.data.token);
+          queryinfo.info = {};
+        }
+      });
     }
+
+  
     let num = ref(0);
     function shiwinfo(e: any) {
       // 捕获子组件点击事件传递过来的值
@@ -81,10 +102,16 @@ export default defineComponent({
     function names() {
       console.log('我是父组件但是我被子组件调用了');
     }
+
+    // 跳转界面
+    function addshowinfop() {
+      router.push('/views/message');
+    }
     return {
       queryinfo,
       add,
       shiwinfo,
+      addshowinfop,
       num,
       names,
       showifo,
