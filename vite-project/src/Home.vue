@@ -46,6 +46,11 @@
   <div>
     <el-button type="primary" @click="addshowinfop">跳转</el-button>
   </div>
+
+  <!-- 跳转过滤器 -->
+  <div>
+    <el-button type="primary" @click="addflirt">跳转过滤器</el-button>
+  </div>
 </template>
 <script lang="ts">
 import Hie from './views/Home.vue';
@@ -84,7 +89,6 @@ export default defineComponent({
       });
     }
 
-  
     let num = ref(0);
     function shiwinfo(e: any) {
       // 捕获子组件点击事件传递过来的值
@@ -107,6 +111,11 @@ export default defineComponent({
     function addshowinfop() {
       router.push('/views/message');
     }
+
+    // 跳转过滤器
+    function addflirt() {
+      console.log(1111);
+    }
     return {
       queryinfo,
       add,
@@ -115,7 +124,8 @@ export default defineComponent({
       num,
       names,
       showifo,
-      fuadd
+      fuadd,
+      addflirt
     };
   }
 });

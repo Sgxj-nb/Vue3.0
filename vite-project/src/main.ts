@@ -7,7 +7,14 @@ import router from './router/index';
  * */
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
+
 const app = createApp(App);
+
+// 挂载全局封装方法
+import { time } from './utils/tools'
+
+app.config.globalProperties.$fliter = time
 app.use(ElementPlus)
 app.use(router)
+app.use(time)
 app.mount('#app');
