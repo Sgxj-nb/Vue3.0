@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'message',
     component: () => import('../views/Message.vue')
   },
+  {
+    path: '/views/zujian',
+    name: 'zujian',
+    component: () => import('../views/zujian.vue')
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),

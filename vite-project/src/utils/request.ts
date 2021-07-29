@@ -35,3 +35,22 @@ export function Message(params: any) {
     params
   })
 }
+// ======================================================
+
+// 表单测试类型
+export function login(params: any) {
+  return request({
+    url: '/api/user/login',
+    method: 'post',
+    params
+  })
+}
+
+// 图片上传
+export function un(params?: any) {
+  return request({
+    url: '/api/v1/upload/qiniuToken',
+    method: 'post',
+    params
+  })
+}

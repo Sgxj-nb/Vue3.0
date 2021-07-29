@@ -1,7 +1,9 @@
 import axios, { AxiosInstance } from 'axios';
 // const config = require('../../config');
 // const { baseURL } = config[process.env.NODE_ENV]
-let baseURL = 'http://yepao.api.com'
+// let baseURL = 'http://yepao.api.com'
+// let baseURL = 'http://alm.api.com' // 艾莱米
+let baseURL = 'http://dashan.api.jlwl100.com'//大山
 // 创建实例
 // const service: AxiosInstance = axios.create({
 //   baseURL, // 接口地址

@@ -10,10 +10,17 @@
   <div>
     <el-button type="primary" @click="names">我是子组件</el-button>
   </div>
+  <!-- 跳转组件界面 -->
+  <div>
+    <div>
+      <el-button type="primary" @click="addzujian">跳转组件界面</el-button>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { mallGoodsDetailAPI } from '../utils/request';
 import { reactive, defineComponent, ref } from 'vue';
+import { useRouter } from 'vue-router';
 export default defineComponent({
   name: 'App',
   props: {
@@ -23,6 +30,7 @@ export default defineComponent({
   },
   methods: {},
   setup(props, context) {
+    const tz = useRouter();
     // 接口请求演示(局部)
     function xuanran() {
       mallGoodsDetailAPI({ group_id: '1' }).then((res: any) => {
@@ -54,8 +62,14 @@ export default defineComponent({
     function adinfo() {
       console.log('我是子组件', '我被父组件调用');
     }
+
+    // 跳转到组件界面
+    function addzujian() {
+      tz.push('/views/zujian');
+    }
     return {
       info,
+      addzujian,
       add,
       names,
       adinfo

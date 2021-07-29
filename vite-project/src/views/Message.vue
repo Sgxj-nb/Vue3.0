@@ -12,6 +12,13 @@
   <div>
     {{ $fliter(1626510408) }}
   </div>
+
+  <!-- md5加密 -->
+  <div>
+    <div>
+      {{ $hex_md5(88888888888888) }}
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { Qufi } from '../utils/request';
