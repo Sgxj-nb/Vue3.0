@@ -6,7 +6,6 @@
         <el-form-item label="账号" prop="name">
           <el-input v-model="uploadFormData.name" placeholder="qq"></el-input>
         </el-form-item>
-
         <el-form-item label="密码" prop="code">
           <el-input v-model="uploadFormData.code" placeholder="mm"></el-input>
         </el-form-item>
@@ -27,19 +26,113 @@
             </template>
           </el-upload>
         </el-form-item>
-
+        <el-form-item label="单选">
+          <el-radio v-model="uploadFormData.ra1" label="第一个"></el-radio>
+          <el-radio v-model="uploadFormData.ra2" label="第二个"></el-radio>
+        </el-form-item>
+        <el-form-item label="复选框">
+          <el-checkbox v-model="uploadFormData.checkbox"
+            >我是复选框</el-checkbox
+          >
+        </el-form-item>
+        <el-form-item label="下拉选择器">
+          <el-select v-model="uploadFormData.select" placeholder="请选择">
+            <el-option
+              v-for="(d, index) in listshowinfpasdwd.name"
+              :key="index"
+              :label="d.name"
+              :value="d.name"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="下拉选择器(多选)">
+          <el-select
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            v-model="uploadFormData.select2"
+            placeholder="请选择"
+          >
+            <el-option
+              v-for="(d, index) in listshowinfpasdwd.name"
+              :key="index"
+              :label="d.name"
+              :value="d.name"
+            ></el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item label="时间选择器">
+          <el-date-picker
+            v-model="uploadFormData.date"
+            @change="changedata"
+            type="date"
+            placeholder="选择日期"
+          >
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="滑块校验">
+          <el-switch
+            v-model="uploadFormData.switch"
+            active-value="1"
+            inactive-value="0"
+          ></el-switch>
+        </el-form-item>
         <el-button type="primary" @click="add">提交</el-button>
       </el-form>
+    </div>
+  </div>
+
+  <div>
+    <div>
+      <el-table :data="showlist.name">
+        <el-table-column label="第一个" prop="names"> </el-table-column>
+        <el-table-column label="第二个" prop="names"> </el-table-column>
+        <el-table-column label="第三个" prop="names"> </el-table-column>
+        <el-table-column label="操作" slot="scope">
+          <template #default="scope">
+            <el-button
+              type="primary"
+              @click="addasdadada(scope.$index, scope.row)"
+              >点我</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+    <div v-if="dialogMediaVisible">
+      <Dlp
+        :formdata="uploadFormData"
+        @quxiao="quxiao"
+        v-model:visible="dialogMediaVisible"
+      ></Dlp>
     </div>
   </div>
 </template>
 <script lang="ts">
 import { ref, reactive, defineComponent, toRef, toRefs } from 'vue';
 import { login, un } from '../utils/request';
+import Dlp from '../components/dol.vue';
 export default defineComponent({
   name: 'App',
+  components: {
+    Dlp
+  },
   setup() {
-    const uploadObj = { name: '', code: '', mobile: '', img: '' }; // 新增组别表单包含的参数
+    const uploadObj = {
+      name: '',
+      code: '',
+      mobile: '',
+      img: '',
+      ra1: '第一个',
+      ra2: '',
+      checkbox: false, // 复选框默认不选中
+      select: '',
+      select2: [],
+      date: '',
+      switch: ''
+    }; // 新增组别表单包含的参数
     const uploadFormData = ref({ ...uploadObj }); // 新增组别表单的信息
     const uploadForm = ref(); // 新增组别表单 DOM
     // 新建表单规则
@@ -104,7 +197,46 @@ export default defineComponent({
         }
       });
     }
+    // 表单下拉框
+    let listshowinfpasdwd = reactive({
+      name: [
+        {
+          name: '1'
+        },
+        {
+          name: '2'
+        },
+        {
+          name: '3'
+        }
+      ]
+    });
+
+    // 时间选择器表单事件
+    function changedata(e: any) {
+      let time: any = new Date().getTime() / 1000;
+      console.log(time);
+    }
+
+    let showlist = reactive({
+      name: [{ names: 'xxxx' }]
+    });
+    let dialogMediaVisible: any = ref(false);
+    // 表格传值
+    function addasdadada(e: any, es: any): void {
+      console.log(e, es.names); // 表格获取的值
+      dialogMediaVisible.value = true;
+    }
+    function quxiao() {
+      dialogMediaVisible.value = false;
+    }
     return {
+      quxiao,
+      dialogMediaVisible,
+      addasdadada,
+      showlist,
+      changedata,
+      listshowinfpasdwd,
       uploadFormData,
       passwinfo,
       successundata,
