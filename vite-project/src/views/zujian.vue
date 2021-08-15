@@ -109,15 +109,42 @@
       ></Dlp>
     </div>
   </div>
+  <!-- 添加按钮 -->
+  <div>
+    <el-button type="primary" @click="addtc(null)">添加按钮</el-button>
+    <!-- <el-button type="primary" @click="addtc(null)">修改</el-button>F -->
+    <div>
+      <el-table :data="shownfo.sasdadad">
+        <el-table-column label="第一个" prop="a"></el-table-column>
+        <el-table-column label="第二个" prop="b"></el-table-column>
+        <el-table-column label="第三个">
+          <template #default="scope">
+            <el-button type="primary" @click="addtc(scope.$index, scope.row)"
+              >修改</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+  </div>
+  <div>
+    <!--  -->
+    <Frominfo
+      v-model:visible="diangezhi"
+      :forminfo="forminfo.forminfos"
+    ></Frominfo>
+  </div>
 </template>
 <script lang="ts">
 import { ref, reactive, defineComponent, toRef, toRefs } from 'vue';
 import { login, un } from '../utils/request';
 import Dlp from '../components/dol.vue';
+import Frominfo from '../components/from.vue';
 export default defineComponent({
   name: 'App',
   components: {
-    Dlp
+    Dlp,
+    Frominfo
   },
   setup() {
     const uploadObj = {
@@ -230,7 +257,29 @@ export default defineComponent({
     function quxiao() {
       dialogMediaVisible.value = false;
     }
+
+    // 添加
+    let diangezhi: any = ref(false);
+
+    let shownfo = reactive({
+      sasdadad: [
+        { a: 'xxxx', b: 'xxxsssssx' },
+        { a: 'xxxx22222', b: 'xxxsssssx' }
+      ]
+    });
+
+    let forminfo = reactive({
+      forminfos: {}
+    });
+    function addtc(value: any) {
+      forminfo.forminfos = value;
+      diangezhi.value = true;
+    }
     return {
+      forminfo,
+      shownfo,
+      addtc,
+      diangezhi,
       quxiao,
       dialogMediaVisible,
       addasdadada,
