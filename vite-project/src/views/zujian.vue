@@ -269,10 +269,11 @@ export default defineComponent({
     });
 
     let forminfo = reactive({
-      forminfos: {}
+      forminfos: null
     });
+    // 添加事件传递的值
     function addtc(value: any) {
-      forminfo.forminfos = value;
+      forminfo.forminfos;
       diangezhi.value = true;
     }
     return {
