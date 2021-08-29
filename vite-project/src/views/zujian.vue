@@ -119,9 +119,8 @@
         <el-table-column label="第二个" prop="b"></el-table-column>
         <el-table-column label="第三个">
           <template #default="scope">
-            <el-button type="primary" @click="addtc(scope.$index, scope.row)"
-              >修改</el-button
-            >
+            <!-- scope.$index -->
+            <el-button type="primary" @click="addtc(scope.row)">修改</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -269,11 +268,11 @@ export default defineComponent({
     });
 
     let forminfo = reactive({
-      forminfos: null
+      forminfos: {}
     });
     // 添加事件传递的值
     function addtc(value: any) {
-      forminfo.forminfos;
+      forminfo.forminfos = value;
       diangezhi.value = true;
     }
     return {

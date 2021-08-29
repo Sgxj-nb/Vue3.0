@@ -8,6 +8,7 @@
         :before-close="handleClose"
       >
         <el-form :model="forminfo">
+          {{ forminfo }}
           <el-form-item label="值">
             <el-input v-model="forminfo.info.a" placeholder="用户"></el-input>
           </el-form-item>
@@ -22,8 +23,7 @@
   </div>
 </template>
 <script lang="ts">
-import { log } from 'console';
-import { defineComponent, reactive, ref, watch, watchEffect } from 'vue';
+import { defineComponent, reactive, ref, watchEffect, watch } from 'vue';
 export default defineComponent({
   name: 'App',
   emits: ['update:visible'],
@@ -46,15 +46,33 @@ export default defineComponent({
       context.emit('update:visible', false);
     }
     // 监听对象参数
-    watchEffect(() => {
-      if (prop.forminfo) {
-        isUpdate.value = true;
-        forminfo = reactive({ info: Object.assign({}, prop.forminfo) }); // 通过prop.forminfo拿到的表单数据
-      } else {
-        isUpdate.value = false;
-        forminfo.info = {};
+    // watchEffect(() => {
+    //   if (prop.forminfo) {
+    //     isUpdate.value = true;
+    //     forminfo = reactive({ info: Object.assign({}, prop.forminfo) }); // 通过prop.forminfo拿到的表单数据
+    //     console.log(forminfo, 1);
+    //   } else {
+    //     console.log(forminfo, 2);
+    //     isUpdate.value = false;
+    //     forminfo.info = {};
+    //   }
+    // });
+    watch(
+      () => prop.forminfo,
+      (a: any, c: any) => {
+        if (prop.forminfo) {
+          isUpdate.value = true;
+          forminfo = reactive({
+            info: Object.assign({}, prop.forminfo)
+          }); // 通过prop.forminfo拿到的表单数据
+          console.log(forminfo, 1);
+        } else {
+          console.log(forminfo, 2);
+          isUpdate.value = false;
+          forminfo.info = {};
+        }
       }
-    });
+    );
     // 关闭弹窗
     function handleClose() {
       context.emit('update:visible', false);
