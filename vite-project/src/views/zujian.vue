@@ -129,6 +129,7 @@
   <div>
     <!--  -->
     <Frominfo
+      v-if="diangezhi"
       v-model:visible="diangezhi"
       :forminfo="forminfo.forminfos"
     ></Frominfo>

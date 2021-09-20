@@ -38,41 +38,21 @@ export default defineComponent({
       console.log(forminfo.a, forminfo.b); // 拿到的数据值
     }
 
-    let forminfo = reactive({ info: Object.assign({}, prop.forminfo) }); // 通过prop.forminfo拿到的表单数据
+    const forminfo = reactive({ info: Object.assign({}, prop.forminfo) }); // 通过prop.forminfo拿到的表单数据
     // 取消事件
     function quxioa() {
       //添加清空表单数据， 调取内置方法关闭弹框
       forminfo.info = {};
       context.emit('update:visible', false);
     }
-    // 监听对象参数
-    // watchEffect(() => {
-    //   if (prop.forminfo) {
-    //     isUpdate.value = true;
-    //     forminfo = reactive({ info: Object.assign({}, prop.forminfo) }); // 通过prop.forminfo拿到的表单数据
-    //     console.log(forminfo, 1);
-    //   } else {
-    //     console.log(forminfo, 2);
-    //     isUpdate.value = false;
-    //     forminfo.info = {};
-    //   }
-    // });
-    watch(
-      () => prop.forminfo,
-      (a: any, c: any) => {
-        if (prop.forminfo) {
-          isUpdate.value = true;
-          forminfo = reactive({
-            info: Object.assign({}, prop.forminfo)
-          }); // 通过prop.forminfo拿到的表单数据
-          console.log(forminfo, 1);
-        } else {
-          console.log(forminfo, 2);
-          isUpdate.value = false;
-          forminfo.info = {};
-        }
+    // 监听值的变化来判断是修改还是添加
+    watchEffect(() => {
+      if (Object.keys(forminfo.info).length > 0) {
+        isUpdate.value = true;
+      } else {
+        isUpdate.value = false;
       }
-    );
+    });
     // 关闭弹窗
     function handleClose() {
       context.emit('update:visible', false);
