@@ -1,6 +1,7 @@
 <template>
   <!-- 表单校验 -->
   <div>
+    <el-button type="primary" @click="router.go(-1)">返回上一页</el-button>
     <div>
       <el-form :model="uploadFormData" :rules="rules" ref="uploadForm">
         <el-form-item label="账号" prop="name">
@@ -137,6 +138,7 @@
 </template>
 <script lang="ts">
 import { ref, reactive, defineComponent, toRef, toRefs } from 'vue';
+import { useRouter } from 'vue-router';
 import { login, un } from '../utils/request';
 import Dlp from '../components/dol.vue';
 import Frominfo from '../components/from.vue';
@@ -147,6 +149,7 @@ export default defineComponent({
     Frominfo
   },
   setup() {
+    const router = useRouter();
     const uploadObj = {
       name: '',
       code: '',
@@ -293,7 +296,8 @@ export default defineComponent({
       add,
       rules,
       uploadForm,
-      beforeupload
+      beforeupload,
+      router
     };
   }
 });
