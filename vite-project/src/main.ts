@@ -8,6 +8,8 @@ import router from './router/index';
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
+// 引入vuex
+import vuex from './store';
 const app = createApp(App);
 
 // 挂载全局封装方法(时间戳)
@@ -15,6 +17,7 @@ import { time, hex_md5 } from './utils/tools'
 app.config.globalProperties.$fliter = time;
 // md5加密
 app.config.globalProperties.$hex_md5 = hex_md5
+app.use(vuex)
 app.use(ElementPlus)
 app.use(router)
 app.use(time)

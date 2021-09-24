@@ -16,6 +16,13 @@
       <el-button type="primary" @click="addzujian">跳转组件界面</el-button>
     </div>
   </div>
+
+  <!-- vuex界面 -->
+  <div>
+    <div>
+      <el-button type="primary" @click="addvuex">跳转vuex</el-button>
+    </div>
+  </div>
 </template>
 <script lang="ts">
 import { mallGoodsDetailAPI } from '../utils/request';
@@ -67,7 +74,11 @@ export default defineComponent({
     function addzujian() {
       tz.push('/views/zujian');
     }
+    function addvuex() {
+      tz.push('/views/vuex');
+    }
     return {
+      addvuex,
       info,
       addzujian,
       add,

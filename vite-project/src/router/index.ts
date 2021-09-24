@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'zujian',
     component: () => import('../views/zujian.vue')
   },
+  {
+    path: '/views/vuex',
+    name: 'vuex',
+    component: () => import('../views/vuex.vue')
+  },
 ]
 const router = createRouter({
   history: createWebHashHistory(),
