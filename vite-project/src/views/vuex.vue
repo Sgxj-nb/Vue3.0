@@ -6,29 +6,35 @@
     </div>
   </div>
 
-  <div>
-    <div>asdasdasdas</div>
-  </div>
+  <div></div>
   <div>我是Vuex写死的值：{{ info }}</div>
+  <div>vuex拿到的值{{ naem }}</div>
 </template>
 <script lang="ts">
 import { useRouter } from 'vue-router';
-import { defineComponent, onMounted, ref } from 'vue';
-import store from '../store';
+import { defineComponent, reactive, onMounted, ref, computed } from 'vue';
+import { useStore } from 'vuex';
 export default defineComponent({
   name: 'App',
   setup() {
+    const stores = useStore();
     const router = useRouter();
-    let info = ref(store._state.data.text);
+    let info = ref(stores.state.text);
     function add() {
       router.go(-1);
     }
+    function cunzhi() {
+      let c: Number = 22266660;
+      stores.dispatch('title', c);
+    }
+    cunzhi();
     onMounted(() => {
-      console.log(store._state.data.text); // 通过此形式可以拿掉vuex里面的值
+      console.log(stores.state.text); // 通过此形式可以拿掉vuex里面的值
     });
     return {
       add,
-      info
+      info,
+      naem: computed(() => stores.state.title) // 获取vuex的值
     };
   }
 });
