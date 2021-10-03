@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
+    // 允许从没有设置默认导出的模块中默认导入。这并不影响代码的输出，仅为了类型检查
+    "allowSyntheticDefaultImports": true,
+    // 解析非相对模块名的基准目录
+    "baseUrl": ".",
     "target": "esnext",
     "useDefineForClassFields": true,
+    "importHelpers": true,
     "module": "esnext",
     "moduleResolution": "node",
     "strict": true,
@@ -9,7 +14,13 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+    "skipLibCheck": true,
+    "types": ["vite/client"],
+    "lib": ["esnext", "dom"],
+    // 模块名到基于 baseUrl的路径映射的列表。
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }
