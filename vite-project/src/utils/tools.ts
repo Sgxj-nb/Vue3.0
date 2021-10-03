@@ -84,7 +84,7 @@ export function parseTime(time: any, cFormat: any) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result: any, key: any) => {
     let value = formatObj[key]
     if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value] }
     if (result.length > 0 && value < 10) {
