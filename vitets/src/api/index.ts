@@ -3,7 +3,7 @@
  * */
 
 import common from './common';
-
+import user from './user';
 interface UrlDict {
   [key: string]: {
     [key: string]: string
@@ -11,7 +11,8 @@ interface UrlDict {
 };
 
 const urlDict: UrlDict = {
-  common
+  common,
+  user
 };
 
 const getUrl = (url: string): string => {

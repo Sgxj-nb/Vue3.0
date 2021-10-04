@@ -3,7 +3,7 @@
  * */
 
 type NetConfigSuccessCode = 200 | '200' | '000000';
-export const baseURL: string = 'xxxxxxxxxxxxxxx';// 接口地址
+export const baseURL: string = 'http://dashan.api.jlwl100.com/';// 接口地址
 // 配后端数据的接收方式application/json;charset=UTF-8 或 application/x-www-form-urlencoded;charset=UTF-8
 export const contentType: string = "application/json;charset=UTF-8";
 // 最长请求时间

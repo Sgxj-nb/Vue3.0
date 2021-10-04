@@ -178,11 +178,13 @@ class MyRequest {
   public post(url: string, data: any = {}, config: object = {}): Promise<MyRequest.response> {
     return new Promise((resolve, reject) => {
       this.service.post(getUrl(url), data, config).then(result => {
-        resolve({
-          msg: result.data.msg,
-          data: result.data.data,
-          code: result.data.code
-        })
+        // console.log(JSON.parse(result.data));
+        resolve(JSON.parse(result.data))
+        // resolve({
+        //   msg: result.data.msg,
+        //   data: result.data.data,
+        //   code: result.data.code
+        // })
       }, reject)
     })
   }
