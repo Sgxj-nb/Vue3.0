@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 import request from '../utils/request';
 defineProps<{ msg: string }>();
 const count = ref(0);
@@ -16,4 +16,18 @@ function add() {
       console.log(res);
     });
 }
+
+let info = reactive({
+  zhi: {
+    page: 1,
+    limit: 10
+  }
+});
+// 查询get请求演示
+function getinfoa() {
+  request.get('user.usetinfo', info.zhi).then((res) => {
+    console.log(res);
+  });
+}
+getinfoa();
 </script>

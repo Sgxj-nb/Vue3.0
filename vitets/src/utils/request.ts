@@ -52,7 +52,8 @@ class MyRequest {
     this.axiosRequestConfig = {
       baseURL: baseURL,
       headers: {
-        timestamp: new Date().getTime(),
+        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kYXNoYW4uYXBpLmpsd2wxMDAuY29tXC9hcGlcL3YxXC9tYW5hZ2VcL3VzZXJcL2xvZ2luIiwiaWF0IjoxNjMzMzk5ODQwLCJleHAiOjE2MzM0MDM0NDAsIm5iZiI6MTYzMzM5OTg0MCwianRpIjoiUVAzWTlQN2t6TURRMmNFVCIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.OK1tqgsq9nb5v0q6PquiDwJk3g8UPDixleBtOKGDcY4',
+        // timestamp: new Date().getTime(),
         'Content-Type': contentType
       },
       transformResponse: [function (data: AxiosResponse) {
@@ -160,17 +161,17 @@ class MyRequest {
       const randomColor = `rgba(${Math.round(Math.random() * 255)},${Math.round(
         Math.random() * 255
       )},${Math.round(Math.random() * 255)})`
-      console.log(
-        '%c┍------------------------------------------------------------------┑',
-        `color:${randomColor};`
-      )
-      console.log('| 请求地址：', response.config.url)
-      console.log('| 请求参数：', qs.parse(response.config.data))
-      console.log('| 返回数据：', response.data)
-      console.log(
-        '%c┕------------------------------------------------------------------┙',
-        `color:${randomColor};`
-      )
+      // console.log(
+      //   '%c┍------------------------------------------------------------------┑',
+      //   `color:${randomColor};`
+      // )
+      // console.log('| 请求地址：', response.config.url)
+      // console.log('| 请求参数：', qs.parse(response.config.data))
+      // console.log('| 返回数据：', response.data)
+      // console.log(
+      //   '%c┕------------------------------------------------------------------┙',
+      //   `color:${randomColor};`
+      // )
     }
   }
 
@@ -189,15 +190,16 @@ class MyRequest {
     })
   }
 
-  // get方法
+  // get方法({ allowDots: true })
   public get(url: string, params: any = {}, config: object = {}): Promise<MyRequest.response> {
     return new Promise((resolve, reject) => {
       this.service.get(`${getUrl(url)}?${qs.stringify(params)}`, config).then(result => {
-        resolve({
-          msg: result.data.msg,
-          data: result.data.data,
-          code: result.data.code
-        })
+        resolve(JSON.parse(result.data))
+        // resolve({
+        //   msg: result.data.msg,
+        //   data: result.data.data,
+        //   code: result.data.code
+        // })
       }, reject)
     })
   }
