@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click="add">sss</button>
+    <button @click="add">测试重复请求</button>
     {{ count }}
   </div>
 </template>

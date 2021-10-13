@@ -3,3 +3,6 @@
 - Vue 3 + Typescript + Vite
 - `npm install axios --save`
 - `npm install vue-router@4`
+
+- 进度条
+- `npm install --save nprogress` 
