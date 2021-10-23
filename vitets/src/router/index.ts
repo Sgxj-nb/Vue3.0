@@ -18,7 +18,12 @@ const routes: Array<RouteRecordRaw> = [
         name: 'Home',
       }
     ]
-  }
+  },
+  // {
+  //   path: "/:catchAll(.*)",
+  //   name: '404',
+  //   component: () => import("@/layouts/error.vue").catch(() => { })
+  // },
 ]
 
 const router = createRouter({
@@ -26,5 +31,7 @@ const router = createRouter({
   history: createWebHashHistory(), // hash路由
   routes
 })
-
+router.beforeEach((to, from, next) => {
+  next()
+})
 export default router

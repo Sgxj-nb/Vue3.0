@@ -5,13 +5,13 @@
   </div>
 </template>
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
-import request from '../utils/request';
+import { reactive, ref } from "vue";
+import request from "../utils/request";
 defineProps<{ msg: string }>();
 const count = ref(0);
 function add() {
   request
-    .post('user.list', { user_name: 'admin', user_password: '123456' })
+    .post("user.list", { user_name: "admin", user_password: "123456" })
     .then((res) => {
       console.log(res);
     });
@@ -20,12 +20,12 @@ function add() {
 let info = reactive({
   zhi: {
     page: 1,
-    limit: 10
-  }
+    limit: 10,
+  },
 });
 // 查询get请求演示
 function getinfoa() {
-  request.get('user.usetinfo', info.zhi).then((res) => {
+  request.get("user.usetinfo", info.zhi).then((res) => {
     console.log(res);
   });
 }
