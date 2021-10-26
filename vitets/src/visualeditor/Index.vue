@@ -14,6 +14,7 @@
       @myClick="myClick"
       :zhi="zhi"
       :showinfo="showinfo"
+      @showinfoaaaa="showinfoaaaa"
     ></Info>
   </div>
   <div>儿子来了{{ erzi.name }}</div>
@@ -29,12 +30,33 @@
   <div>
     <!-- <el-button type="primary" @click="addinfoaaaa">父组件传子组件</el-button> -->
   </div>
+
+  <!-- 测试base传值 -->
+  <div>
+    <el-button @click="addinfoaa" type="primary">测试base机制(mitt)</el-button>
+  </div>
+
+  <!-- 测试vuex -->
+  <div>
+    <el-button type="primary" @click="addinfocaasadasdasd"
+      >点击传值vuex</el-button
+    >
+    <div>
+      <!-- <div>{{ $store.state.count }}</div>
+      <button @click="$store.commit('add')">按钮</button> -->
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
+import mitt from "../bas/index";
 import Info from "../components/zu/index.vue";
-import { onMounted, reactive, ref } from "vue-demi";
+import { onMounted, reactive, ref, computed } from "vue-demi";
+import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 let router = useRouter();
+// 获取编程式导航的值
+// const currentId = route.params.id
+
 // 跳转第二个界面
 function add(): void {
   router.push({ path: "/page/home", query: { id: 1 } });
@@ -55,6 +77,35 @@ function addfuqin() {
   console.log(comp.value.childName); // 值
   comp.value.someMraaa(); //方法
 }
+
+// 父组件来调取我的方法
+function showinfoaaaa(value: any) {
+  console.log(1111111111);
+}
+
+// 测试使用base传值(mitt)
+
+function addinfoaa() {
+  mitt.emit("addcreshi", "我是你爸爸");
+}
+
+// 测试vuex
+const store = useStore();
+const count = computed(() => {
+  return store.state.zhis;
+});
+console.log("直接获取vuex响应式的值", count.value);
+
+// 存值
+function addinfocaasadasdasd() {
+  store.commit("zhiinfoa", 9999);
+  console.log(aaaaa.value);
+}
+
+// 获取值
+const aaaaa = computed(() => {
+  return store.state.showinfo;
+});
 
 onMounted(function () {});
 </script>

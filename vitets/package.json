@@ -9,10 +9,12 @@
   "dependencies": {
     "axios": "^0.22.0",
     "element-plus": "^1.1.0-beta.21",
+    "mitt": "^3.0.0",
     "nprogress": "^0.2.0",
     "qs": "^6.10.1",
     "vue": "^3.2.16",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/qs": "^6.9.7",

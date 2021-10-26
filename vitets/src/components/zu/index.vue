@@ -12,10 +12,17 @@
     <!-- 点击按钮的值通过点击传给父组件 -->
     <el-button type="primary" @click="addifoa">子传父</el-button>
   </div>
+
+  <!-- 子组件调取父组件 -->
+  <div>
+    <el-button type="primary" @click="addshowinof"
+      >子调父方法-{{ zhiinfoaaa }}</el-button
+    >
+  </div>
 </template>
 <script lang="ts" setup>
-import { useAttrs } from "vue-demi";
-
+import { useAttrs, onUnmounted, ref } from "vue-demi";
+import mitt from "../../bas/index";
 // 父组件接值
 const props = defineProps({
   // 第一种写法
@@ -30,7 +37,7 @@ const props = defineProps({
 // 子传父
 // 3.2
 // 写法
-const eitm = defineEmits(["myClick", "myClick2", "a", "c"]);
+const eitm = defineEmits(["myClick", "myClick2", "a", "c", "showinfoaaaa"]);
 const addifoa = () => {
   eitm("myClick", "我是儿子我来了");
 };
@@ -45,4 +52,19 @@ defineExpose({
 // 通过attrs拿到父组件的值
 const attrs = useAttrs();
 console.log(attrs.c, attrs.a);
+
+// 我是子组件我要调取父组件的方法
+const addshowinof = () => {
+  eitm("showinfoaaaa");
+};
+
+let zhiinfoaaa: any = ref("");
+// base接值
+const someMethed: any = (value: string): void => {
+  zhiinfoaaa.value += value;
+};
+mitt.on("addcreshi", someMethed);
+onUnmounted(() => {
+  mitt.off("addcreshi", someMethed);
+});
 </script>

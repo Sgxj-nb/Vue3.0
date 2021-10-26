@@ -6,3 +6,9 @@
 
 - 进度条
 - `npm install --save nprogress` 
+
+- 安装Bas总线在替代方法
+- `npm i mitt -S`
+
+- vuex
+- `npm install vuex@next --save`
