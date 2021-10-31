@@ -8,6 +8,13 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../visualeditor/Index.vue')
   },
   {
+    path: '/index',
+    meta: {
+      name: "商城首页"
+    },
+    component: () => import('../components/phone/index.vue')
+  },
+  {
     path: '/page',
     component: () => import('../components/page/one/Index.vue'),
     redirect: '/page/home', // 重定向

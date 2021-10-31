@@ -12,3 +12,7 @@
 
 - vuex
 - `npm install vuex@next --save`
+
+- 移动端自适应
+- `npm install lib-flexible --save-dev`
+- `npm i postcss-pxtorem -D`
