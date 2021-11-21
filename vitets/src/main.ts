@@ -5,7 +5,7 @@ import { ElButton } from "element-plus";
 import 'element-plus/dist/index.css'
 import store from './store/index'
 import 'lib-flexible/flexible'
-import { Button, Swipe, SwipeItem } from 'vant';
+import { Button, Swipe, SwipeItem, Tabbar, TabbarItem } from 'vant';
 import 'vant/lib/index.css'; // 全局引入样式
 import { use } from 'element-plus/es/locale';
 const app = createApp(App)
@@ -13,7 +13,8 @@ const app = createApp(App)
 app.use(Button)
   .use(Swipe)
   .use(SwipeItem)
-
+  .use(Tabbar)
+  .use(TabbarItem)
 // elm
 app.use(ElButton)
 

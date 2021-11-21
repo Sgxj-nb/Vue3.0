@@ -15,7 +15,7 @@ interface UrlDict {
 const urlDict: UrlDict = {
   common,
   user,
-  home
+  home,
 };
 
 const getUrl = (url: string): string => {

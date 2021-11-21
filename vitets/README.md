@@ -16,3 +16,10 @@
 - 移动端自适应
 - `npm install lib-flexible --save-dev`
 - `npm i postcss-pxtorem -D`
+
+- 一款基于移动端滚动的插件
+- `https://better-scroll.github.io/docs/zh-CN/guide/#betterscroll-%E6%98%AF%E4%BB%80%E4%B9%88`
+<!--  @click="()=>$router.push('/home')" 直接写再模板上的写法 -->
+
+- 没有path的话('按照 @types/node 即可')
+- `npm i @types/node -D`

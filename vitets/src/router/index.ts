@@ -2,17 +2,44 @@ import { createWebHistory, createRouter, RouteRecordRaw, createWebHashHistory } 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
+    name: "首页",
     meta: {
-      name: "首页"
     },
     component: () => import('../visualeditor/Index.vue')
   },
   {
     path: '/index',
     meta: {
-      name: "商城首页"
+      keepAlive: true,
+      name: "商城首页",
+
     },
     component: () => import('../components/phone/index.vue')
+  },
+  {
+    path: '/indexs',
+    meta: {
+      keepAlive: true,
+      name: "分类",
+
+    },
+    component: () => import('../components/phone/fl.vue')
+  },
+  {
+    path: '/indexss',
+    meta: {
+      keepAlive: true,
+      name: "购物车"
+    },
+    component: () => import('../components/phone/gwc.vue')
+  },
+  {
+    path: '/indexsss',
+    meta: {
+      keepAlive: true,
+      name: "我的"
+    },
+    component: () => import('../components/phone/wd.vue')
   },
   {
     path: '/page',

@@ -18,6 +18,7 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@types/node": "^16.11.9",
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^1.9.2",
     "babel-plugin-import": "^1.13.3",

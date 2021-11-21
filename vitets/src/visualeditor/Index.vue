@@ -46,6 +46,9 @@
       <button @click="$store.commit('add')">按钮</button> -->
     </div>
   </div>
+  <div>
+    <el-button type="primary" @click="addaaawdddd">跳转实列网站</el-button>
+  </div>
 </template>
 <script setup lang="ts">
 import mitt from "../bas/index";
@@ -54,6 +57,12 @@ import { onMounted, reactive, ref, computed } from "vue-demi";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 let router = useRouter();
+
+// 跳转实列网站
+function addaaawdddd() {
+  router.push("/index");
+}
+
 // 获取编程式导航的值
 // const currentId = route.params.id
 

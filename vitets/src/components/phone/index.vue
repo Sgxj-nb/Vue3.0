@@ -1,4 +1,5 @@
 <template>
+  <el-button type="inof" @click="() => $router.push('/')">asdasd</el-button>
   <!-- 头部 -->
   <header>
     <div buinof>
@@ -43,13 +44,16 @@
       </div>
     </div>
   </section>
+  <div>
+    <Tabb></Tabb>
+  </div>
 </template>
 <script lang="ts" setup>
+import Tabb from "../zu/tabber.vue";
 import request from "../../utils/request";
 import { reactive, ref } from "vue-demi";
-
 // 头部输入框的值
-let zhi: string = ref("");
+let zhi = ref("");
 let carousels = reactive({
   infoa: [],
   iinfoaaa: [],
