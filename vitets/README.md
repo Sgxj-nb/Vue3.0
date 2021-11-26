@@ -23,3 +23,9 @@
 
 - 没有path的话('按照 @types/node 即可')
 - `npm i @types/node -D`
+
+- 生产环境生成 .gz / .br文件
+- `npm add --dev vite-plugin-compression`
+
+- 下一代状态管理器
+- `npm install pinia@next`

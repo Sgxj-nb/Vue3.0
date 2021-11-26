@@ -2,7 +2,6 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import styleImport from 'vite-plugin-style-import';
 import path from 'path';
-
 const isProduction = process.env.NODE_ENV == 'production'
 export default defineConfig({
   // 项目跟目录
@@ -16,7 +15,9 @@ export default defineConfig({
   // 目录别名
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, '/src')
+      // src: path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, '/src'),
+      '/images': 'src/assets/images' // 配置图片不显示的问题
     }
   },
   // css 预处理器
@@ -54,14 +55,30 @@ export default defineConfig({
           resolveStyle: (name) => `vant/es/${name}/style`
         }
       ]
-    })
+    }),
   ],
-  // 压缩
+
+  // 打包
   build: {
     minify: 'esbuild',
-    assetsDir: '',
+    assetsDir: 'static/img/',
     outDir: `./dist`,
     // 进行压缩计算
     brotliSize: false,
+    // 分包打包
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'static/js/[name]-[hash].js',
+        entryFileNames: 'static/js/[name]-[hash].js',
+        assetFileNames: 'static/[ext]/[name]-[hash].[ext]'
+      }
+    },
+    // 生产环境移除 console
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    }
   },
 })

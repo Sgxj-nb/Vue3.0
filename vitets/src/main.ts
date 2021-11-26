@@ -8,6 +8,7 @@ import 'lib-flexible/flexible'
 import { Button, Swipe, SwipeItem, Tabbar, TabbarItem } from 'vant';
 import 'vant/lib/index.css'; // 全局引入样式
 import { use } from 'element-plus/es/locale';
+import { createPinia } from 'pinia'
 const app = createApp(App)
 // vant
 app.use(Button)
@@ -23,4 +24,5 @@ app.use(router)
 
 // vuex
 app.use(store)
+app.use(createPinia())
 router.isReady().then(() => app.mount('#app')) // 路由挂载

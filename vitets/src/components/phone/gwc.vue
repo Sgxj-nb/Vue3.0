@@ -1,6 +1,10 @@
 <template>
+  <div>pani练习</div>
   <div>
-    {{ zhiL }}
+    {{ useCounter.count }}
+  </div>
+  <div>
+    <el-button type="primary" @click="addinfoaww">点击存值</el-button>
   </div>
   <div>
     <Tabb></Tabb>
@@ -8,12 +12,12 @@
 </template>
 <script lang="ts" setup>
 import Tabb from "../zu/tabber.vue";
+import { useCounterStore } from "../../pain/index";
+const useCounter = useCounterStore();
 
-// 测试数组
-interface shiwzu {
-  value?: string;
-  name?: string;
+// 点击传值到pani
+function addinfoaww() {
+  // 调取pain自定义方法
+  useCounter.setifnoi(3000);
 }
-
-let zhiL: shiwzu[] = [{ name: "xxxx", value: "xxxxxsadad" }];
 </script>

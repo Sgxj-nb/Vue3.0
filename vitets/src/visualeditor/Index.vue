@@ -5,6 +5,8 @@
     <el-button type="primary">asdasdasd</el-button>
   </div>
 
+  <img src="/images/dasdascsdvfnffjyttio.png" alt="" />
+
   <!-- 子组件 -->
   <div>
     <Info
