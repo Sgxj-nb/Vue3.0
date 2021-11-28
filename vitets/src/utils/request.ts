@@ -52,7 +52,7 @@ class MyRequest {
     this.axiosRequestConfig = {
       baseURL: baseURL,
       headers: {
-        Authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9kYXNoYW4uYXBpLmpsd2wxMDAuY29tXC9hcGlcL3YxXC9tYW5hZ2VcL3VzZXJcL2xvZ2luIiwiaWF0IjoxNjMzMzk5ODQwLCJleHAiOjE2MzM0MDM0NDAsIm5iZiI6MTYzMzM5OTg0MCwianRpIjoiUVAzWTlQN2t6TURRMmNFVCIsInN1YiI6MSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.OK1tqgsq9nb5v0q6PquiDwJk3g8UPDixleBtOKGDcY4',
+        token: '7ced6b3ea596d2e67d25fde6d7976af6',
         // timestamp: new Date().getTime(),
         'Content-Type': contentType
       },

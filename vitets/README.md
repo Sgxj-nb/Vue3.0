@@ -29,3 +29,42 @@
 
 - 下一代状态管理器
 - `npm install pinia@next`
+
+```
+
+// Vite2设置别名路径方式二
+        alias: [
+            {
+                find: "@",
+                replacement: path.resolve("./src")
+            },
+            {
+                find: "@image",
+                replacement: path.resolve("./src/assets/images")
+            },
+            {
+                find: "@router",
+                replacement: path.resolve("./src/router")
+            },
+            {
+                find: "@store",
+                replacement: path.resolve("./src/store")
+            },
+            {
+                find: "@api",
+                replacement: path.resolve("./src/api")
+            }
+        ]
+```
+
+
+## 缓存界面开
+
+```
+onActivated(() => { // 被包裹组件被激活的状态下触发
+      // 逻辑代码
+ }
+onDeactivated(() => { // 在被包裹组件停止使用时触发
+    // 逻辑代码
+})
+```

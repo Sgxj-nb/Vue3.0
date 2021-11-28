@@ -5,8 +5,15 @@ const routes: Array<RouteRecordRaw> = [
     name: "首页",
     meta: {
     },
-    component: () => import('../visualeditor/Index.vue')
+    component: () => import('@/visualeditor/Index.vue')
   },
+  // {
+  //   path: '/ssss',
+  //   name: "首页s",
+  //   meta: {
+  //   },
+  //   component: () => import('@/views/redirect/indexx.vue')
+  // },
   {
     path: '/index',
     meta: {
@@ -14,7 +21,7 @@ const routes: Array<RouteRecordRaw> = [
       name: "商城首页",
 
     },
-    component: () => import('../components/phone/index.vue')
+    component: () => import('@/components/phone/index.vue')
   },
   {
     path: '/indexs',
@@ -23,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
       name: "分类",
 
     },
-    component: () => import('../components/phone/fl.vue')
+    component: () => import('@/components/phone/fl.vue')
   },
   {
     path: '/indexss',
@@ -31,7 +38,7 @@ const routes: Array<RouteRecordRaw> = [
       keepAlive: true,
       name: "购物车"
     },
-    component: () => import('../components/phone/gwc.vue')
+    component: () => import('@/components/phone/gwc.vue')
   },
   {
     path: '/indexsss',
@@ -39,16 +46,24 @@ const routes: Array<RouteRecordRaw> = [
       keepAlive: true,
       name: "我的"
     },
-    component: () => import('../components/phone/wd.vue')
+    component: () => import('@/components/phone/wd.vue')
+  },
+  {
+    path: '/xq',
+    meta: {
+      keepAlive: false,
+      name: "详情界面"
+    },
+    component: () => import('@/components/phone/zi/xq.vue')
   },
   {
     path: '/page',
-    component: () => import('../components/page/one/Index.vue'),
+    component: () => import('@/components/page/one/Index.vue'),
     redirect: '/page/home', // 重定向
     children: [
       {
         path: '/page/home',
-        component: () => import('../components/page/one/show.vue'),
+        component: () => import('@/components/page/one/show.vue'),
         name: 'Home',
       }
     ]

@@ -30,6 +30,7 @@
   <section>
     <div inofaaww>
       <div
+        @click="addzhiinfo(d, index)"
         v-for="(d, index) in carousels.iinfoaaa"
         :key="index"
         class="asdasdad"
@@ -52,6 +53,10 @@
 import Tabb from "../zu/tabber.vue";
 import request from "../../utils/request";
 import { reactive, ref } from "vue-demi";
+import { useRouter } from "vue-router";
+import { useCounterStore } from "@/pain/index"; // pain
+const useCounter = useCounterStore();
+const rouinfo = useRouter();
 // 头部输入框的值
 let zhi = ref("");
 let carousels = reactive({
@@ -77,6 +82,18 @@ pawinof();
 // 图片点事件
 function add(d: string): void {
   window.location.href = (d as any).redirectUrl;
+}
+
+// 点击跳转
+function addzhiinfo(a: Object, index: string): void {
+  console.log(a, index);
+  // useCounter.setduixiang(a);
+  rouinfo.push({
+    path: "/xq",
+    query: {
+      id: (a as any).goodsId,
+    },
+  });
 }
 </script>
 

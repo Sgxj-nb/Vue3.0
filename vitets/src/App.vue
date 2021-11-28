@@ -5,7 +5,7 @@ import { onBeforeRouteUpdate, useRoute, useRouter } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 const route = useRoute(); // 使用useRoute()来完成路由的监听
 let includeList: any = reactive({
-  list: ["分类", "商城首页"],
+  list: ["分类", "商城首页", "详情界面"],
 });
 </script>
 
@@ -13,8 +13,17 @@ let includeList: any = reactive({
   <!-- 默认的缓存方式 -->
   <router-view v-slot="{ Component }">
     <keep-alive>
-      <component :is="Component"></component>
+      <component
+        v-if="$route.meta.keepAlive"
+        :key="$route.name"
+        :is="Component"
+      ></component>
     </keep-alive>
+    <component
+      :is="Component"
+      :key="$route.name"
+      v-if="!$route.meta.keepAlive"
+    />
   </router-view>
 
   <!-- 动态解析的返回方式 -->

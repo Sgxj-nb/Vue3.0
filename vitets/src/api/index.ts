@@ -5,7 +5,7 @@
 import common from './common';
 import user from './user';
 import home from './shouye';
-
+import goods from './zi'
 interface UrlDict {
   [key: string]: {
     [key: string]: string
@@ -16,6 +16,7 @@ const urlDict: UrlDict = {
   common,
   user,
   home,
+  goods
 };
 
 const getUrl = (url: string): string => {

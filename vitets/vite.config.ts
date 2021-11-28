@@ -12,13 +12,13 @@ export default defineConfig({
   mode: 'development',
   // 静态资源文件
   publicDir: 'assets',
-  // 目录别名
+  //别名路径配置
   resolve: {
     alias: {
-      // src: path.resolve(__dirname, 'src'),
-      '@': path.resolve(__dirname, '/src'),
+      '@': path.resolve(__dirname, 'src'),
       '/images': 'src/assets/images' // 配置图片不显示的问题
-    }
+    },
+    extensions: ['.js', '.json', '.ts'] // 使用路径别名时想要省略的后缀名，可以自己 增减
   },
   // css 预处理器
   css: {
