@@ -18,6 +18,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { ElMessage } from "element-plus";
 import { onMounted, reactive, ref } from "vue-demi";
 import request from "@/utils/request";
 import { useCounterStore } from "@/pain/index"; // pain
@@ -29,15 +30,27 @@ function asdasdas() {
     message?: String;
     data?: Object;
   }
-  request.get(`goods.detail`, {}).then((res: zhi) => {
+  request.get(`goods.detail`).then((res: zhi) => {
     console.log(res);
     if (res.message) {
-      rel.paifnoa = res.data;
+      (rel.paifnoa as zhinifo) = res.data;
     }
   });
 }
+
+interface zhinifo {
+  goodsCoverImg?: String;
+  goodsName?: String;
+  sellingPrice?: String;
+  goodsDetailContent?: String;
+}
 let rel = reactive({
-  paifnoa: {},
+  paifnoa: {
+    goodsCoverImg: "",
+    goodsName: "",
+    sellingPrice: "",
+    goodsDetailContent: "",
+  },
 });
 asdasdas();
 
@@ -45,16 +58,27 @@ asdasdas();
 let num = ref(0);
 
 // 点击添加
-function ifnoawwddd() {}
+function ifnoawwddd() {
+  goouwche();
+}
 
 function goouwche() {
   interface jiesss {
-    message?: String;
+    message?: "";
     data?: [];
+    resultCode?: Number;
   }
-  request.get("goods.shop", {}).then((res: jiesss) => {
-    
-  });
+  request
+    .post("goods.shop", { goodsCount: num.value, goodsId: 10902 })
+    .then((res: jiesss) => {
+      console.log(res);
+      if (res.resultCode != 500) {
+        num.value += 1;
+      } else {
+        ElMessage(res.message);
+        return;
+      }
+    });
 }
 </script>
 

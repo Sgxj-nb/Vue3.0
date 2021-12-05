@@ -30,7 +30,7 @@
   <section>
     <div inofaaww>
       <div
-        @click="addzhiinfo(d, index)"
+        @click="addzhiinfo(d, index.toString())"
         v-for="(d, index) in carousels.iinfoaaa"
         :key="index"
         class="asdasdad"
