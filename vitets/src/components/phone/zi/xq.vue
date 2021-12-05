@@ -50,9 +50,11 @@ function ifnoawwddd() {}
 function goouwche() {
   interface jiesss {
     message?: String;
-    data?: Array;
+    data?: [];
   }
-  request.get("goods.shop", {}).then((res: jiesss) => {});
+  request.get("goods.shop", {}).then((res: jiesss) => {
+    
+  });
 }
 </script>
 
