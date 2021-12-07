@@ -59,9 +59,11 @@ let num = ref(0);
 
 // 点击添加
 function ifnoawwddd() {
+  num.value = 1;
   goouwche();
 }
 
+// 查看是否点击过
 function goouwche() {
   interface jiesss {
     message?: "";
@@ -73,13 +75,15 @@ function goouwche() {
     .then((res: jiesss) => {
       console.log(res);
       if (res.resultCode != 500) {
-        num.value += 1;
+        alert("添加成功");
       } else {
+        num.value = 1;
         ElMessage(res.message);
         return;
       }
     });
 }
+goouwche();
 </script>
 
 <style scoped>
