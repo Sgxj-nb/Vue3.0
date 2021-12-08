@@ -4,15 +4,19 @@ export const useCounterStore = defineStore('index', {
     return {
       duiixang: {},
       count: 0,
+      zongshu: null // 统计下单点击的参数
     }
   },
   getters: {
   },
   actions: {
+    // 获取每次点击后商品购物车总数+1的参数
+    setnuminfo(value) {
+      this.zongshu = value
+    },
     setifnoi(value) {
       this.count = value
     },
-
     // 获取传递的对象
     setduixiang(value) {
       this.duiixang = value
