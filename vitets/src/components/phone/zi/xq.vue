@@ -59,7 +59,7 @@ let num = ref(0);
 
 // 点击添加
 function ifnoawwddd() {
-  num.value = 1;
+  // num.value = 1;
   goouwche();
 }
 
@@ -71,19 +71,40 @@ function goouwche() {
     resultCode?: Number;
   }
   request
-    .post("goods.shop", { goodsCount: num.value, goodsId: 10902 })
+    .post("goods.shop", { goodsCount: num.value, goodsId: 10250 })
     .then((res: jiesss) => {
       console.log(res);
       if (res.resultCode == 200) {
         alert("添加成功");
+        num.value += 1;
+        zhinfo.setnuminfo(num.value);
       } else {
-        num.value = 1;
+        // num.value += 1;
         zhinfo.setnuminfo(num.value);
         ElMessage(res.message);
       }
     });
 }
-goouwche();
+// goouwche();
+
+// 直接查询
+function chaxunzhiinfo() {
+  interface jiesss {
+    message?: "";
+    data?: [];
+    resultCode?: Number;
+  }
+  request.get("goods.shop", {}).then((res: jiesss) => {
+    console.log(res);
+    if (res.resultCode == 200) {
+      num.value = res.data.length;
+      zhinfo.setnuminfo(num.value);
+    } else {
+      console.log("xxx");
+    }
+  });
+}
+chaxunzhiinfo();
 </script>
 
 <style scoped>

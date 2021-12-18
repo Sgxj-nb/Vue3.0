@@ -17,7 +17,8 @@ export const useCounterStore = defineStore('index', {
     },
     // 获取每次点击后商品购物车总数+1的参数
     setnuminfo(value) {
-      this.zongshu = value
+      this.zongshu += value
+
     },
     setifnoi(value) {
       this.count = value
