@@ -52,7 +52,7 @@ class MyRequest {
     this.axiosRequestConfig = {
       baseURL: baseURL,
       headers: {
-        token: '207881260dcaeb5ca5abc4295f9fdacd',
+        token: 'd3862d8d9c077b547e7747793112ce0d',
         // timestamp: new Date().getTime(),
         'Content-Type': contentType
       },

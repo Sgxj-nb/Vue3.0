@@ -74,12 +74,12 @@ function goouwche() {
     .post("goods.shop", { goodsCount: num.value, goodsId: 10902 })
     .then((res: jiesss) => {
       console.log(res);
-      if (res.resultCode != 500) {
+      if (res.resultCode == 200) {
         alert("添加成功");
       } else {
         num.value = 1;
+        zhinfo.setnuminfo(num.value);
         ElMessage(res.message);
-        return;
       }
     });
 }
