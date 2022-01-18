@@ -51,6 +51,15 @@
   <div>
     <el-button type="primary" @click="addaaawdddd">跳转实列网站</el-button>
   </div>
+
+  <div>
+    <!-- 异步组件 -->
+    <div>
+      <div>
+        <el-button @click="addroytinfo" type="primary">异步组件实例</el-button>
+      </div>
+    </div>
+  </div>
 </template>
 <script setup lang="ts">
 import mitt from "../bas/index";
@@ -117,6 +126,11 @@ function addinfocaasadasdasd() {
 const aaaaa = computed(() => {
   return store.state.showinfo;
 });
+
+// 异步组件跳转实例
+function addroytinfo() {
+  router.push("/yibu");
+}
 
 onMounted(function () {});
 </script>

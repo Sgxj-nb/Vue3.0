@@ -57,6 +57,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/components/phone/zi/xq.vue')
   },
   {
+    path: '/yibu',
+    meta: {
+      keepAlive: false,
+      name: "异步组件"
+    },
+    component: () => import('@/text/index.vue')
+  },
+  {
     path: '/page',
     component: () => import('@/components/page/one/Index.vue'),
     redirect: '/page/home', // 重定向
