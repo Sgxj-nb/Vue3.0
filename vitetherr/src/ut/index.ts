@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
-
+import { Toke_Name } from '@/config/seting';
+import { get_token } from '@/config/token';
 /****
  * 
  * 
@@ -19,7 +20,16 @@ const ajax = axios.create({
 
 
 // 拦截器
+
+interface Cinfo {
+
+}
+
 ajax.interceptors.request.use((config): AxiosRequestConfig<any> => {
+  const token = get_token()
+  if (token) {
+    config.headers[Toke_Name] = token
+  }
   return config;
 }, (error: any) => {
   Promise.reject(error)

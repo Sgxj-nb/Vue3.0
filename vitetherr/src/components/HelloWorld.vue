@@ -43,7 +43,7 @@ function add() {
       console.log(res);
     })
     .catch((error) => {
-      console.log(222);
+      console.log(222, error);
     });
 }
 </script>

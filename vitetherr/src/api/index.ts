@@ -11,5 +11,5 @@ export async function loag(data: NewAxiosInstance) {
   if (res.data.code == 0) {
     return res;
   }
-  return Promise.reject(new Error(res))
+  return Promise.reject(res)
 }

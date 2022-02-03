@@ -36,3 +36,7 @@
 # 路由
 
 - `npm add vue-router@4`
+
+# 状态管理
+
+- `npm i pinia`
