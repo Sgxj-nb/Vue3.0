@@ -12,18 +12,29 @@
     <button @click="out">清空信息</button>
     <button @click="addpush">跳转</button>
   </div>
-  <div>
+  <div class="info">
     用户信息
     {{ profileStore.usermessage }}
+  </div>
+  <div>
+    <Button size="large" type="primary">主要按钮</Button>
+  </div>
+  <div>
+    <Rate :size="25" v-model="info"></Rate>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import { loag } from "@/api/index";
-import { useCounterStore } from "@/store/index";
-import { set_tokennfo } from "@/config/token";
-import { useRouter } from "vue-router";
+import { reactive, ref } from 'vue';
+import { loag } from '@/api/index';
+import { useCounterStore } from '@/store/index';
+import { set_tokennfo } from '@/config/token';
+import { useRouter } from 'vue-router';
+
+import { Button, Toast, Rate } from 'vant';
+
+let info = ref(3);
+
 const profileStore = useCounterStore();
 const router = useRouter();
 interface Quaninfo {
@@ -32,15 +43,15 @@ interface Quaninfo {
   remember?: Boolean;
 }
 enum meiju {
-  user_name = "",
-  user_password = "",
-  remember = "",
+  user_name = '',
+  user_password = '',
+  remember = ''
 }
 
 let from: Quaninfo = reactive({
-  user_name: "admin",
-  user_password: "123456",
-  remember: true,
+  user_name: 'admin',
+  user_password: '123456',
+  remember: true
 });
 
 // 登录事件
@@ -64,13 +75,18 @@ function add() {
 
 // 清空本地值
 function out() {
+  Toast.success('对的');
   profileStore.removeoutuser();
 }
 
 // 跳转
 function addpush() {
-  router.push("/xxxx");
+  router.push('/xxxx');
 }
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.info {
+  font-size: 15px;
+}
+</style>

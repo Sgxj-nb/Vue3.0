@@ -9,6 +9,8 @@ import viteCompression from 'vite-plugin-compression'
 // 引入legacyPlugin
 import legacyPlugin from '@vitejs/plugin-legacy'
 
+// 设置vant
+import styleImport, { VantResolve } from 'vite-plugin-style-import';
 export default defineConfig({
   plugins: [vue(),
   vueJsx({
@@ -26,7 +28,12 @@ export default defineConfig({
   legacyPlugin({
     targets: ["chrome 52", 'ie >= 11'],
     additionalLegacyPolyfills: ['regenerator-runtime/runtime'] // 面向IE11时需要此插
-  })
+  }),
+
+  // 配置vant
+  styleImport({
+    resolves: [VantResolve()],
+  }),
   ],
 
   // 配置路径别名
@@ -53,6 +60,8 @@ export default defineConfig({
 
   // 项目打包配置
   build: {
+    // 关闭压缩计算
+    brotliSize: false,
     // 清除console和debug
     terserOptions: {
       compress: {
