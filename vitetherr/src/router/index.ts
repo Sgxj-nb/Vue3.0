@@ -27,7 +27,8 @@ router.beforeEach((to, from, next) => {
     remove();
     useCounterStore().removeoutuser();
   }
+
   next();
 })
 
-export default router
+export default router;
