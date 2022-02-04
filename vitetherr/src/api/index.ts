@@ -6,10 +6,20 @@ interface NewAxiosInstance extends AxiosInstance {
   <T = any>(config: AxiosRequestConfig): AxiosPromise<T>
 }
 
+// 登录
 export async function loag(data: NewAxiosInstance) {
   const res = await axios.post('/v1/manage/user/login', data)
   if (res.data.code == 0) {
     return res;
   }
   return Promise.reject(res)
+}
+
+// 用户信息
+export async function getname() {
+  const res = await axios.get('/v1/manage/sys/userInfo');
+  if (res) {
+    return res
+  }
+  return Promise.reject(res);
 }

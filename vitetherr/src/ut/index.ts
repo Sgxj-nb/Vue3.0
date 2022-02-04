@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import { Toke_Name } from '@/config/seting';
-import { get_token } from '@/config/token';
+import { get_token, remove } from '@/config/token';
+import { useCounterStore } from "@/store/index";
+
 /****
  * 
  * 
@@ -20,15 +22,11 @@ const ajax = axios.create({
 
 
 // 拦截器
-
-interface Cinfo {
-
-}
-
 ajax.interceptors.request.use((config): AxiosRequestConfig<any> => {
   const token = get_token()
   if (token) {
-    config.headers[Toke_Name] = token
+    // 采用not null 断言操作符 告诉编译器有这个东西就行了
+    config.headers![Toke_Name] = token
   }
   return config;
 }, (error: any) => {
@@ -37,6 +35,10 @@ ajax.interceptors.request.use((config): AxiosRequestConfig<any> => {
 
 // 响应器
 ajax.interceptors.response.use((res: AxiosResponse) => {
+  if (res.data.code == 401) {
+    remove();
+    useCounterStore().removeoutuser()
+  }
   return res
 }, (error: any) => {
   Promise.reject(error)

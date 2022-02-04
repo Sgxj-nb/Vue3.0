@@ -1,7 +1,6 @@
 // token文件部分
 import { Set_token } from './seting';
 
-
 /***
  * 获取token
  * */
