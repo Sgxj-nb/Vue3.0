@@ -39,7 +39,18 @@ export default defineConfig({
   // 配置启动
   server: {
     host: '0.0.0.0',
-    open: true
+    open: true,
+    cors: true, // 跨域设置允许
+    strictPort: true, // 如果端口已占用直接退出
+    // 这里我不采用代理
+    // proxy: {
+    //   '/api': {
+    //     // 本地 8000 前端代码的接口 代理到 8888 的服务端口
+    //     target: 'http://localhost:8888/',
+    //     changeOrigin: true, // 允许跨域
+    //     rewrite: (path) => path.replace('/api/', '/'),
+    //   },
+    // },
   },
 
   // 预留一个识别sass全局变量配置(此处我不做配置 因为我自己不爱用这玩意)
