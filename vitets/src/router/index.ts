@@ -65,6 +65,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/text/index.vue')
   },
   {
+    path: '/chebox',
+    meta: {
+      keepAlive: false,
+      name: "异步组件"
+    },
+    component: () => import('@/components/vat/chebox.vue')
+  },
+  {
     path: '/page',
     component: () => import('@/components/page/one/Index.vue'),
     redirect: '/page/home', // 重定向

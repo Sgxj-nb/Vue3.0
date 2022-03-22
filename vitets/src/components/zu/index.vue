@@ -19,10 +19,14 @@
       >子调父方法-{{ zhiinfoaaa }}</el-button
     >
   </div>
+  <div>
+    <el-button type="primary" @click="addrouinfo">vant复选框</el-button>
+  </div>
 </template>
 <script lang="ts" setup>
 import { useAttrs, onUnmounted, ref } from "vue-demi";
 import mitt from "../../bas/index";
+import { useRouter } from "vue-router";
 // 父组件接值
 const props = defineProps({
   // 第一种写法
@@ -67,4 +71,9 @@ mitt.on("addcreshi", someMethed);
 onUnmounted(() => {
   mitt.off("addcreshi", someMethed);
 });
+
+const router: any = useRouter();
+function addrouinfo() {
+  router.push("/chebox");
+}
 </script>

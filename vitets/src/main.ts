@@ -5,7 +5,7 @@ import { ElButton } from "element-plus";
 import 'element-plus/dist/index.css'
 import store from './store/index'
 import 'lib-flexible/flexible'
-import { Button, Swipe, SwipeItem, Tabbar, TabbarItem } from 'vant';
+import { Button, Swipe, SwipeItem, Tabbar, TabbarItem, RadioGroup, Radio } from 'vant';
 import 'vant/lib/index.css'; // 全局引入样式
 import { use } from 'element-plus/es/locale';
 import { createPinia } from 'pinia'
@@ -16,6 +16,8 @@ app.use(Button)
   .use(SwipeItem)
   .use(Tabbar)
   .use(TabbarItem)
+  .use(RadioGroup)
+  .use(Radio)
 // elm
 app.use(ElButton)
 
