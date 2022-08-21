@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, getCurrentInstance } from "vue";
 import Login from "./components/login/index.vue";
 import { getImageUrl } from "../tools/image";
 let bodyImage: string = getImageUrl("download.jpg");
 let contentImage: string = getImageUrl("peple.svg");
+const appContext = getCurrentInstance();
+
+function add(): void {
+  console.log(appContext);
+}
 </script>
 
 <template>

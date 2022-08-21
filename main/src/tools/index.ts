@@ -5,10 +5,6 @@
 // 本地存储token名称
 export const TokenName: string = 'token'
 
-// 请求头带参数
-export const Herder: Object = {
-
-}
 /**
  * 存储token方式
  * @p local 本地永久存储
