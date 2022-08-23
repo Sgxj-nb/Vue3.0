@@ -1,20 +1,67 @@
 <script setup lang="ts" name="indexLogin">
-import { onMounted, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import useCurrentInstance from "@/axios/requst";
 import { Form, FormItem, Input, Row, Button } from "ant-design-vue";
-let z = ref("1");
+import { storageToken } from "@/tools/index";
+// import Alert from "@/components/HelloWorld.vue";
+import { message } from "ant-design-vue";
+let form = reactive({
+  info: {
+    captcha: "",
+    captchaId: "",
+    password: "123456",
+    username: "admin",
+  },
+});
 const { proxy } = useCurrentInstance();
-function add(): void {
-  // proxy.$ajax("", "", "", function (res: any) {
-  //   console.log(res);
-  // });
-}
+// let showObject = reactive({
+//   info: {
+//     show: false,
+//     message: "",
+//     type: "",
+//   },
+// }) as any;
 
+// 验证码部分
+let imagePic = ref("");
+let nullTime = ref(null) as any;
+interface statusObj {
+  captchaId?: string;
+  captchaLength?: number;
+  picPath?: string;
+}
+// 点击更换验证码
+function onImage() {
+  clearTimeout(nullTime.value);
+  nullTime.value = setTimeout(() => {
+    ImageCreate();
+  }, 200);
+}
 // 请求图片验证码
 function ImageCreate() {
-  // /api/base/captcha
-  proxy.$ajax("/api/base/captcha", "", {}, function (res: any) {
-    console.log(res);
+  proxy.$ajax("/api/base/captcha", "", {}, function (res: statusObj) {
+    if (res.picPath) {
+      imagePic.value = res.picPath;
+      form.info.captchaId = res.captchaId as string;
+    }
+  });
+}
+
+// 登录
+function onLogin() {
+  // showObject.info = reactive({
+  //   show: true,
+  //   message: "登录成功",
+  //   type: "success",
+  // });
+  proxy.$ajax("/api/base/login", "", form.info, function (res) {
+    if (res.code === 7) {
+      message.error(res.msg);
+      ImageCreate();
+    } else {
+      storageToken(res);
+      console.log(res);
+    }
   });
 }
 
@@ -24,6 +71,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- <Alert :showObject="showObject"></Alert> -->
   <div class="page-all">
     <div class="page-content">
       <div class="page-border">
@@ -33,16 +81,20 @@ onMounted(() => {
       <div>
         <a-form>
           <a-form-item>
-            <a-input v-model:value="z" size="large"></a-input>
+            <a-input v-model:value="form.info.username" size="large"></a-input>
           </a-form-item>
           <a-form-item>
-            <a-input v-model:value="z" size="large"></a-input>
+            <a-input v-model:value="form.info.password" size="large"></a-input>
           </a-form-item>
           <a-form-item>
             <div class="page-input">
-              <a-input style="width: 63%" v-model:value="z" size="large" />
-              <div class="page-image">
-                <img style="width: 100px" src="@/tools/img/y.png" alt="" />
+              <a-input
+                style="width: 63%"
+                v-model:value="form.info.captcha"
+                size="large"
+              />
+              <div class="page-image" @click="onImage">
+                <img style="width: 100px" :src="imagePic" alt="" />
                 <div class="page-image-text"></div>
               </div>
             </div>
@@ -55,7 +107,11 @@ onMounted(() => {
                 block
                 >初始化</a-button
               >
-              <a-button @click="add" style="height: 40px" type="primary" block
+              <a-button
+                @click="onLogin"
+                style="height: 40px"
+                type="primary"
+                block
                 >登录</a-button
               >
             </div>
@@ -70,6 +126,7 @@ onMounted(() => {
 
 <style scoped>
 .page-image {
+  cursor: pointer;
   margin-left: 30px;
   position: relative;
 }

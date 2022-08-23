@@ -20,7 +20,6 @@ export function storageMethod(tokenSting: string): Promise<{}> {
 // 存储token方法
 export function storageToken() {
   removeToken()
-
 }
 
 // 移除本地token方法
