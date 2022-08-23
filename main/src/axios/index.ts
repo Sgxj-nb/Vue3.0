@@ -1,18 +1,20 @@
-import axios from 'axios'
+import axios, { AxiosRequestConfig } from 'axios'
 
 const axiosRequest = {
   install(url: string, method: string, data: any, cb: Function) {
-    const herder: object = {}
     axios({
       url: window.origin + url,
-      method: method,
-      ...data,
-      herder: herder
-    }).then((resolve) => {
-      console.log(resolve);
+      method: method ? method : 'POST',
+      data: data,
+      herder: {
+        'content-type': 'application/json; charset=utf-8',
+        'x-token': '',
+        "x-user-id": ''
+      }
+    } as object).then((resolve: AxiosRequestConfig) => {
       const res = resolve.data
       cb(res.data)
-    }).catch((error) => {
+    }).catch((error: AxiosRequestConfig) => {
       cb({ error: error, message: '服务器异常', code: 500 })
     })
   }

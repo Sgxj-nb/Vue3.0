@@ -1,14 +1,26 @@
 <script setup lang="ts" name="indexLogin">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import useCurrentInstance from "@/axios/requst";
 import { Form, FormItem, Input, Row, Button } from "ant-design-vue";
 let z = ref("1");
 const { proxy } = useCurrentInstance();
 function add(): void {
-  proxy.$ajax("", "", "", function (res: any) {
+  // proxy.$ajax("", "", "", function (res: any) {
+  //   console.log(res);
+  // });
+}
+
+// 请求图片验证码
+function ImageCreate() {
+  // /api/base/captcha
+  proxy.$ajax("/api/base/captcha", "", {}, function (res: any) {
     console.log(res);
   });
 }
+
+onMounted(() => {
+  ImageCreate();
+});
 </script>
 
 <template>

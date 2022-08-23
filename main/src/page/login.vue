@@ -82,6 +82,7 @@ function add(): void {
   overflow: hidden;
 }
 .page-concent {
+  /* 16612352169155664 */
   min-width: 1100px;
   box-sizing: border-box;
 }
