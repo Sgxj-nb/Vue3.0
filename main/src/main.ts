@@ -4,6 +4,7 @@ import App from './App.vue'
 import Router from './router/index'
 import 'ant-design-vue/dist/antd.css'
 import axios from './axios/index'
+import { createPinia } from 'pinia'
 const app = createApp(App)
 app.config.globalProperties.$ajax = axios.install
-app.use(Router).mount('#app')
+app.use(Router).use(createPinia()).mount('#app')

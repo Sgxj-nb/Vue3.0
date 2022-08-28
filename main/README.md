@@ -7,6 +7,7 @@
   - 按需导入 `npm i unplugin-vue-components -D` 组件
     - `https://blog.csdn.net/weixin_44002092/article/details/121338461`
   - 请求`npm install axios`  
+  - 全局变量Pinia`npm install pinia`
 - 特殊记
   - 路由传参
   ```

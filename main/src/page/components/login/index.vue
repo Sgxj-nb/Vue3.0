@@ -1,10 +1,14 @@
 <script setup lang="ts" name="indexLogin">
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, onUnmounted } from "vue";
 import useCurrentInstance from "@/axios/requst";
 import { Form, FormItem, Input, Row, Button } from "ant-design-vue";
 import { storageToken } from "@/tools/index";
 // import Alert from "@/components/HelloWorld.vue";
 import { message } from "ant-design-vue";
+import { useRouter } from "vue-router";
+import { storeToRefs } from "pinia";
+import { userConten } from "@/pinia/index";
+const router = useRouter();
 let form = reactive({
   info: {
     captcha: "",
@@ -46,7 +50,8 @@ function ImageCreate() {
     }
   });
 }
-
+const mainStore = userConten(); // 存储
+const { userObject } = storeToRefs(mainStore); // 获取
 // 登录
 function onLogin() {
   // showObject.info = reactive({
@@ -59,14 +64,25 @@ function onLogin() {
       message.error(res.msg);
       ImageCreate();
     } else {
-      storageToken(res);
-      console.log(res);
+      storageToken(res, "local");
+      router.replace({ path: "/" });
+      mainStore.userObject = res;
     }
   });
 }
 
+// 回车事件
+const keydown = (e: any) => {
+  if (e.keyCode == 13) {
+    onLogin();
+  }
+};
 onMounted(() => {
   ImageCreate();
+  window.addEventListener("keydown", keydown);
+});
+onUnmounted(() => {
+  window.removeEventListener("keydown", keydown, false);
 });
 </script>
 
