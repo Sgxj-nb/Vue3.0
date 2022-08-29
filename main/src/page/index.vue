@@ -75,6 +75,7 @@ const { userObject } = storeToRefs(userConten());
   width: 100%;
   position: absolute;
   border: 1px solid red;
+  background-color: #fff;
 }
 .page {
   border: 1px solid red;
@@ -83,6 +84,8 @@ const { userObject } = storeToRefs(userConten());
   overflow: auto;
 }
 .page-main {
+  justify-content: space-between;
+  align-items: center;
   position: relative;
   width: 100%;
   box-sizing: border-box;
