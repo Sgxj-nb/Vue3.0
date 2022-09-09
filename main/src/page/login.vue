@@ -5,7 +5,7 @@ import { getImageUrl } from "../tools/image";
 let bodyImage: string = getImageUrl("download.jpg");
 let contentImage: string = getImageUrl("peple.svg");
 const appContext = getCurrentInstance();
-
+let a = Object.assign;
 function add(): void {
   console.log(appContext);
 }
@@ -82,7 +82,6 @@ function add(): void {
   overflow: hidden;
 }
 .page-concent {
-  /* 16612352169155664 */
   min-width: 1100px;
   box-sizing: border-box;
 }
