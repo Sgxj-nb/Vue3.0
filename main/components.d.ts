@@ -14,6 +14,7 @@ declare module '@vue/runtime-core' {
     AInput: typeof import('ant-design-vue/es')['Input']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Herder: typeof import('./src/components/Herder.vue')['default']
+    LeftTree: typeof import('./src/components/LeftTree.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

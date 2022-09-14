@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Herder from "@/components/Herder.vue";
+import LeftTree from "@/components/LeftTree.vue";
 import { storeToRefs } from "pinia";
 import { userConten } from "@/pinia/index";
 const { userObject } = storeToRefs(userConten());
@@ -13,7 +14,9 @@ const { userObject } = storeToRefs(userConten());
     </div>
     <div class="page-main">
       <div class="page-left">
-        <div class="page-content"></div>
+        <div class="page-content">
+          <LeftTree></LeftTree>
+        </div>
       </div>
       <div class="page-body">asdasdada</div>
     </div>
@@ -29,6 +32,7 @@ const { userObject } = storeToRefs(userConten());
   height: 100%;
 }
 .page-left {
+  color: #fff;
   background: rgb(25, 26, 35);
   position: absolute;
   box-sizing: border-box;
