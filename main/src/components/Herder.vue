@@ -1,15 +1,26 @@
 <template>
-  <div class="H-der">
-    <div class="S-inner">
-      <span>
-        <img :src="img" alt="" />
-      </span>
-      <span>
-        {{ titleName }}
-      </span>
+  <div class="page">
+    <div class="H-der">
+      <div class="S-inner">
+        <span>
+          <img :src="img" alt="" />
+        </span>
+        <span>
+          {{ titleName }}
+        </span>
+      </div>
+      <div style="flex: 1; visibility: hidden">s</div>
+      <div class="S-right">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span><img :src="img" alt="" /></span>
+        <span>管理员</span>
+        <span>
+          <down-outlined />
+        </span>
+      </div>
     </div>
-    <div style="flex: 1">s</div>
-    <div>s</div>
   </div>
 </template>
 
@@ -19,17 +30,44 @@ import DoubleLeftOutlined from "@ant-design/icons-vue/DoubleLeftOutlined";
 import SearchOutlined from "@ant-design/icons-vue/SearchOutlined";
 import FullscreenOutlined from "@ant-design/icons-vue/FullscreenOutlined";
 import AppleOutlined from "@ant-design/icons-vue/AppleOutlined";
+import DownOutlined from "@ant-design/icons-vue/DownOutlined";
 import { title } from "@/tools/tools";
 let img: string = "https://qmplusimg.henrongyi.top/gva_header.jpg";
 let titleName = title;
 </script>
 
 <style scoped>
+.page {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.S-right {
+  padding-right: 20px;
+}
+.S-right > span {
+  display: inline-block;
+}
+.S-right > span:nth-child(4) {
+  width: 50px;
+}
+.S-right > span:nth-child(5) {
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB,
+    Microsoft YaHei, \5fae\8f6f\96c5\9ed1, Arial, sans-serif;
+  width: 50px;
+  font-size: 14px;
+}
+.S-right > span img {
+  width: 40px;
+  vertical-align: middle;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
 .S-inner {
-  text-align: center;
+  margin-left: 35px;
   height: 100%;
-  width: 220px;
-  /* border: 1px solid red; */
+  width: 290px;
 }
 .S-inner > span {
   display: inline-block;
@@ -48,6 +86,7 @@ let titleName = title;
 }
 .H-der {
   align-items: center;
+  flex: 1;
   display: flex;
 }
 </style>
