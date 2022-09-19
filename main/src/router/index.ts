@@ -4,7 +4,7 @@
  *                      这里的是hash模式，这个还可以是createWebHistory等
  * RouteRecordRaw 这个为要添加的路由记录，也可以说是routes的ts类型
  */
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw, useRouter } from 'vue-router';
 import { tree } from '@/tools/tools'
 import Home from '@/page/index.vue'
 
@@ -68,11 +68,14 @@ const router = createRouter({
 })
 
 // 判断是否登录(路由前置拦截)
-router.beforeEach(function (to, from): string | object | undefined {
+router.beforeEach(function (to, from, next) {
   if (!localStorage.getItem('token') && to.name !== 'Login') {
-    return {
-      name: 'Login'
-    }
+    document.title = '登录'
+    //禁用回退
+    window.location.hash = "#/login";
+    window.location.reload()
+  } else {
+    next()
   }
 })
 

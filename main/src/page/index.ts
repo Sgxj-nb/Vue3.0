@@ -1,7 +1,8 @@
-export declare interface rou<T = any> {
+export declare interface rou<T> {
   id: Number;
   name: string;
   path: string;
   pid: Number;
-  meta: T
+  meta?: T,
+  component?: Function
 }
