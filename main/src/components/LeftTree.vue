@@ -19,26 +19,30 @@
 <script setup lang="ts">
 import { TreeFn } from "@/tools/function";
 import { tree } from "@/tools/tools";
-import { reactive, onMounted, ref, defineEmits } from "vue";
+import { reactive, onMounted, ref, defineEmits, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { rou } from "@/page/index";
 let num = ref(0);
 const router = useRouter();
+const route = useRoute();
 let $emit = defineEmits(["onRouter"]);
-interface rou {
-  id: Number;
-  name: string;
-  path: string;
-  pid: Number;
-}
+
 // 菜单切换
-function onTree(d: rou, index: number): void {
+function onTree(d: rou<Object>, index: number): void {
+  stop();
   num.value = index;
   router.push(d.path);
   $emit("onRouter", d);
 }
+
 // 转换树状
 let listInfo = reactive({
   list: TreeFn(tree),
+});
+
+// 监听路由获取颜色
+const stop = watchEffect((onclose) => {
+  num.value = router.currentRoute.value.meta.index as number;
 });
 onMounted(() => {});
 </script>

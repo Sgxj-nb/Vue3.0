@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { ref, shallowRef } from "vue";
+import { ref, shallowRef, watchEffect } from "vue";
 import Herder from "@/components/Herder.vue";
 import LeftTree from "@/components/LeftTree.vue";
 import { storeToRefs } from "pinia";
 import { userConten } from "@/pinia/index";
+import { rou } from "./index";
 const { userObject } = storeToRefs(userConten());
 // 获取菜单改变视图
-function onRouter(d: any): void {
-  console.log(d);
-}
+function onRouter(d: rou<object>): void {}
 </script>
 
 <template>

@@ -28,13 +28,15 @@ const routes: Array<RouteRecordRaw> = [{
     {
       path: '/home/index',
       meta: {
-        title: '首页'
+        title: '首页',
+        index: 0
       },
       component: () => import('@/page/visualization/index.vue')
     },
     {
       path: '/home/permission',
       meta: {
+        index: 1,
         title: '权限'
       },
       component: () => import('@/page/permission/index.vue')
@@ -42,6 +44,7 @@ const routes: Array<RouteRecordRaw> = [{
     {
       path: '/home/com',
       meta: {
+        index: 2,
         title: '组件'
       },
       component: () => import('@/page/com/index.vue')
@@ -49,6 +52,7 @@ const routes: Array<RouteRecordRaw> = [{
     {
       path: '/home/visualization',
       meta: {
+        index: 3,
         title: '可视化'
       },
       component: () => import('@/page/visualization/index.vue')
