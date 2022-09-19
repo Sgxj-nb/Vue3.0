@@ -6,17 +6,28 @@
   - 组件 `https://www.antdv.com/docs/vue/migration-v3-cn`
   - 按需导入 `npm i unplugin-vue-components -D` 组件
     - `https://blog.csdn.net/weixin_44002092/article/details/121338461`
-  - 请求`npm install axios`  
-  - 全局变量Pinia`npm install pinia`
+  - 请求 `npm install axios`  
+  - 全局变量Pinia `npm install pinia`
 - 特殊记
   - 路由传参
   ```
-   import {useRouter} from 'vue-router';
+   import {useRouter ,useRoute} from 'vue-router';
    const router=useRouter();
+   const route = useRoute();
    router.push({path:'xxx',query:{name:'xxxx'}})
    router.query.name as string
+   route.query.name
   ```  
-  
+  - 组件传值
+    - 子组件传递方法给父组件
+    ```
+     import {defineEmits} from 'vue'
+     let $emit = defineEmits(['onclick'])
+     $emit('onclick',{})
+
+     <test @onclick="onclick" />
+     function onclick(d){}
+    ```  
 
 - 参考界面
   - `https://demo.gin-vue-admin.com/#/login`  

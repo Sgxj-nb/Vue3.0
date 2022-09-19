@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 import Herder from "@/components/Herder.vue";
 import LeftTree from "@/components/LeftTree.vue";
 import { storeToRefs } from "pinia";
 import { userConten } from "@/pinia/index";
 const { userObject } = storeToRefs(userConten());
+// 获取菜单改变视图
+function onRouter(d: any): void {
+  console.log(d);
+}
 </script>
 
 <template>
@@ -15,10 +19,14 @@ const { userObject } = storeToRefs(userConten());
     <div class="page-main">
       <div class="page-left">
         <div class="page-content">
-          <LeftTree></LeftTree>
+          <LeftTree @onRouter="onRouter"></LeftTree>
         </div>
       </div>
-      <div class="page-body">asdasdada</div>
+      <div class="page-body">
+        <router-view v-slot="{ Component }">
+          <component :is="Component"></component>
+        </router-view>
+      </div>
     </div>
   </div>
 </template>

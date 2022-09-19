@@ -5,6 +5,8 @@
  * RouteRecordRaw 这个为要添加的路由记录，也可以说是routes的ts类型
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { tree } from '@/tools/tools'
+import Home from '@/page/index.vue'
 
 const routes: Array<RouteRecordRaw> = [{
   path: '/login',
@@ -16,12 +18,45 @@ const routes: Array<RouteRecordRaw> = [{
 },
 {
   path: '/',
+  redirect: "/home/index"
+},
+{
+  path: '/',
   name: 'Home',
-  meta: {
-    title: '首页'
-  },
-  component: () => import('@/page/index.vue')
-}]
+  component: Home,
+  children: [
+    {
+      path: '/home/index',
+      meta: {
+        title: '首页'
+      },
+      component: () => import('@/page/visualization/index.vue')
+    },
+    {
+      path: '/home/permission',
+      meta: {
+        title: '权限'
+      },
+      component: () => import('@/page/permission/index.vue')
+    },
+    {
+      path: '/home/com',
+      meta: {
+        title: '组件'
+      },
+      component: () => import('@/page/com/index.vue')
+    },
+    {
+      path: '/home/visualization',
+      meta: {
+        title: '可视化'
+      },
+      component: () => import('@/page/visualization/index.vue')
+    }
+  ] as any,
+
+}
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -41,4 +76,9 @@ router.beforeEach(function (to, from): string | object | undefined {
 router.afterEach(function (to, from): void {
   document.title = to.meta?.title as string;
 })
+
+// // 写入动态路由
+// tree.forEach((res: any) => {
+//   router.addRoute(res)
+// })
 export default router
