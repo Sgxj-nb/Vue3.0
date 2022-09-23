@@ -2,14 +2,14 @@ export const title = '撒阿斯顿'
 export const tree = [
   {
     name: 'Home',
-    path: '/',
+    path: '/home/index',
     id: 1,
     pid: 1,
     meta: {
       title: '首页',
       index: 0
     },
-    component: () => import('@/page/index.vue')
+    component: () => import('@/page/visualization/index.vue')
   },
   {
     name: '权限',
@@ -42,6 +42,6 @@ export const tree = [
     },
     id: 4,
     pid: 4,
-    component: () => import('@/page/visualization/index.vue')
+    component: () => import('@/page/test/index.vue')
   }
 ]

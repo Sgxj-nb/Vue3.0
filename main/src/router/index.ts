@@ -55,10 +55,9 @@ const routes: Array<RouteRecordRaw> = [{
         index: 3,
         title: '可视化'
       },
-      component: () => import('@/page/visualization/index.vue')
+      component: () => import('@/page/test/index.vue')
     }
-  ] as any,
-
+  ]
 }
 ]
 
