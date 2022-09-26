@@ -1,4 +1,5 @@
 import { reactive } from 'vue'
+import { rou } from '@/page/index'
 // 转树状
 export interface list {
   name: string,
@@ -18,12 +19,11 @@ export let bookList = reactive({
 })
 
 // push页签操作
-export function onChange(e: list) {
+export function onChange(e: rou) {
   bookList.list.push(e)
-  return bookList.list
 }
 
 // 删除页签操作
-export function onRemote(e: list) {
+export function onRemote(e: rou) {
   bookList.list = e
 }
