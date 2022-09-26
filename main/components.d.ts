@@ -12,6 +12,7 @@ declare module '@vue/runtime-core' {
     AForm: typeof import('ant-design-vue/es')['Form']
     AFormItem: typeof import('ant-design-vue/es')['FormItem']
     AInput: typeof import('ant-design-vue/es')['Input']
+    Bookmark: typeof import('./src/components/Bookmark.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Herder: typeof import('./src/components/Herder.vue')['default']
     LeftTree: typeof import('./src/components/LeftTree.vue')['default']

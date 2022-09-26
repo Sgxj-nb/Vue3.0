@@ -8,6 +8,8 @@
     - `https://blog.csdn.net/weixin_44002092/article/details/121338461`
   - 请求 `npm install axios`  
   - 全局变量Pinia `npm install pinia`
+  - 在setup中新增使用name属性来配合keep-alive
+    - `npm i vite-plugin-vue-setup-extend -D --save`
 - 特殊记
   - 路由传参
   ```
@@ -58,3 +60,6 @@
       不重新启动就会报这个错误，是因为vue缓存的目录中没有这个路由
       Cannot read property ‘url’ of undefined
     ```
+- 特殊记的网站
+  - Vue3插件配置 
+    - `https://blog.csdn.net/weixin_44727080/article/details/123197447`

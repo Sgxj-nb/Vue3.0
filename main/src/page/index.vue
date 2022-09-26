@@ -2,6 +2,7 @@
 import { ref, shallowRef, watchEffect } from "vue";
 import Herder from "@/components/Herder.vue";
 import LeftTree from "@/components/LeftTree.vue";
+import Bookmark from "@/components/Bookmark.vue";
 import { storeToRefs } from "pinia";
 import { userConten } from "@/pinia/index";
 import { rou } from "./index";
@@ -23,6 +24,7 @@ function onRouter(d: rou<object>): void {}
       </div>
       <div class="page-body">
         <router-view v-slot="{ Component }">
+          <Bookmark></Bookmark>
           <component :is="Component"></component>
         </router-view>
       </div>

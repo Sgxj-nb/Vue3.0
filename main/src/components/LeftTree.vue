@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { TreeFn } from "@/tools/function";
+import { TreeFn, onChange } from "@/tools/function";
 import { tree } from "@/tools/tools";
 import { reactive, onMounted, ref, defineEmits, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -26,12 +26,15 @@ let num = ref(0);
 const router = useRouter();
 const route = useRoute();
 let $emit = defineEmits(["onRouter"]);
-
+let listBook = reactive({
+  list: [],
+});
 // 菜单切换
 function onTree(d: rou<Object>, index: number): void {
   stop();
   num.value = index;
   router.push(d.path);
+  onChange(d);
   $emit("onRouter", d);
 }
 
