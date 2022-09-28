@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { TreeFn, onChange, bookList } from "@/tools/function";
+import { TreeFn, onChange, bookList, bookSelection } from "@/tools/function";
 import { tree } from "@/tools/tools";
 import { reactive, onMounted, ref, defineEmits, watchEffect } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -33,10 +33,11 @@ let listBook = reactive({
 function onTree(d: rou, index: number): void {
   stop();
   num.value = index;
-  console.log(bookList.list);
   let some = bookList.list.some((res: rou) => res.path == d.path);
   if (!some) {
     onChange(d);
+  } else {
+    bookSelection(d);
   }
   router.push(d.path);
   $emit("onRouter", d);

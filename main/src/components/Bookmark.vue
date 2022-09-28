@@ -15,7 +15,7 @@
           ]"
         >
           <span></span> <span>{{ d.name }}</span>
-          <span v-show="num == index" class="icon"><close-outlined /></span>
+          <span v-if="num == index" class="icon"><close-outlined /></span>
         </li>
       </ul>
     </div>
@@ -23,8 +23,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { bookList } from "@/tools/function";
+import { ref, watch } from "vue";
+import { rou } from "@/page/index";
+import { bookList, bookSelection, watchBookEx } from "@/tools/function";
 import CloseOutlined from "@ant-design/icons-vue/CloseOutlined";
 
 let book = bookList.list;
@@ -41,12 +42,29 @@ function mouseout() {
 function onBook(d, index: number) {
   numCopy.value = index;
 }
+
+// 根据传递的对象解析出对应的下标来选中默认的标签
+let watchBook = watchBookEx;
+
+// 监听左边重复的选项选中标签状态
+watch(watchBook, (newValue: rou, oldValue) => {
+  if (Object.keys(newValue).length > 0) {
+    for (let i = 0, k = book.length; i < k; i++) {
+      if (book[i].path == newValue.path) {
+        numCopy.value = i;
+      }
+    }
+  }
+});
+
+watch(book, (newValue: rou, oldValue) => {
+  numCopy.value = book.length - 1;
+});
 </script>
 
 <style scoped>
 .hover {
-  /* color: #fff !important; */
-  /* background-color: #5578ff; */
+  background-color: #dde0ec;
 }
 .bookPage {
   background-color: #fff;

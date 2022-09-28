@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { rou } from '@/page/index'
 // 转树状
 export interface list {
@@ -15,7 +15,7 @@ export function TreeFn(tree: Array<list>): Array<list> {
 
 // 标签处理函数
 export let bookList = reactive({
-  list: [] as any
+  list: [] as any,
 })
 
 // push页签操作
@@ -26,4 +26,10 @@ export function onChange(e: rou) {
 // 删除页签操作
 export function onRemote(e: rou) {
   bookList.list = e
+}
+
+// 重复选择的标签状态选中
+export let watchBookEx = ref({})
+export function bookSelection(value: rou): void {
+  watchBookEx.value = value
 }
