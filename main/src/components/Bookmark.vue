@@ -3,19 +3,20 @@
     <div class="bookPage">
       <ul v-if="book.length > 0">
         <li
-          :class="num == index ? 'hover' : ''"
-          v-for="(d, index) in book"
+          class="page-hover"
+          v-for="(d, index) in bookList.list"
           :key="d.name"
-          @mousemove="onMousemove(d, index)"
-          @mouseout="mouseout"
           @click="onBook(d, index)"
+          @mousemove="onMousemove(d, index)"
           :style="[
             { color: numCopy == index ? '#fff' : '' },
             { backgroundColor: numCopy == index ? '#5578ff' : '' },
           ]"
         >
           <span></span> <span>{{ d.name }}</span>
-          <span v-if="num == index" class="icon"><close-outlined /></span>
+          <span @click.stop="onDel(d, index)" class="icon"
+            ><close-outlined v-if="numCopy !== index"
+          /></span>
         </li>
       </ul>
     </div>
@@ -25,12 +26,23 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { rou } from "@/page/index";
-import { bookList, bookSelection, watchBookEx } from "@/tools/function";
+import {
+  bookList,
+  bookSelection,
+  watchBookEx,
+  onRemote,
+} from "@/tools/function";
 import CloseOutlined from "@ant-design/icons-vue/CloseOutlined";
 
 let book = bookList.list;
 let num = ref(-1);
 let numCopy = ref(-1);
+
+// 鼠标删除标签事件
+function onDel(d: rou, index: number) {
+  onRemote(d, index);
+}
+
 //  鼠标事件
 function onMousemove(d, index: any) {
   num.value = index;
@@ -57,13 +69,16 @@ watch(watchBook, (newValue: rou, oldValue) => {
   }
 });
 
-watch(book, (newValue: rou, oldValue) => {
+watch(bookList.list, (newValue: rou, oldValue) => {
   numCopy.value = book.length - 1;
 });
 </script>
 
 <style scoped>
-.hover {
+.page-hover:hover .icon {
+  color: #333;
+}
+.page-hover:hover {
   background-color: #dde0ec;
 }
 .bookPage {
@@ -95,6 +110,8 @@ ul li > span:nth-child(1) {
   background-color: #5578ff;
 }
 .icon {
+  width: 20px;
+  color: transparent;
   padding-left: 10px;
   display: inline-block;
   font-size: 11px;

@@ -22,9 +22,4 @@ const axiosRequest = {
   }
 }
 
-
-function han() {
-  return '`11'
-}
-
 export default axiosRequest
