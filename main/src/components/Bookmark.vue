@@ -9,13 +9,13 @@
           @click="onBook(d, index)"
           @mousemove="onMousemove(d, index)"
           :style="[
-            { color: numCopy == index ? '#fff' : '' },
-            { backgroundColor: numCopy == index ? '#5578ff' : '' },
+            { color: numCopy == d.path ? '#fff' : '' },
+            { backgroundColor: numCopy == d.path ? '#5578ff' : '' },
           ]"
         >
           <span></span> <span>{{ d.name }}</span>
           <span @click.stop="onDel(d, index)" class="icon"
-            ><close-outlined v-if="numCopy !== index"
+            ><close-outlined v-if="numCopy !== d.path"
           /></span>
         </li>
       </ul>
@@ -26,18 +26,15 @@
 <script setup lang="ts">
 import { ref, watch } from "vue";
 import { rou } from "@/page/index";
-import {
-  bookList,
-  bookSelection,
-  watchBookEx,
-  onRemote,
-} from "@/tools/function";
+import { bookList, onRemote, bookObject, onChange } from "@/tools/function";
 import CloseOutlined from "@ant-design/icons-vue/CloseOutlined";
+import { useRoute, useRouter } from "vue-router";
 
+const router = useRouter();
+const route = useRoute();
 let book = bookList.list;
 let num = ref(-1);
-let numCopy = ref(-1);
-
+let numCopy = ref("");
 // 鼠标删除标签事件
 function onDel(d: rou, index: number) {
   onRemote(d, index);
@@ -51,26 +48,19 @@ function mouseout() {
   num.value = -1;
 }
 // 标签点击事件
-function onBook(d, index: number) {
-  numCopy.value = index;
+function onBook(d: rou, index: number) {
+  numCopy.value = d.path;
+  onChange(d, true);
+  router.push(d.path);
 }
 
-// 根据传递的对象解析出对应的下标来选中默认的标签
-let watchBook = watchBookEx;
-
-// 监听左边重复的选项选中标签状态
-watch(watchBook, (newValue: rou, oldValue) => {
-  if (Object.keys(newValue).length > 0) {
-    for (let i = 0, k = book.length; i < k; i++) {
-      if (book[i].path == newValue.path) {
-        numCopy.value = i;
-      }
-    }
-  }
+// 监听点击当前值选中颜色变化
+watch(bookObject, (newValue: rou, oldValue) => {
+  numCopy.value = newValue.path;
 });
 
 watch(bookList.list, (newValue: rou, oldValue) => {
-  numCopy.value = book.length - 1;
+  numCopy.value = bookList.list[bookList.list.length - 1].path;
 });
 </script>
 

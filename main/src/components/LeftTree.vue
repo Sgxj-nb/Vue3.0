@@ -5,7 +5,7 @@
       v-for="(d, index) in listInfo.list"
       :key="d.id"
       class="tree"
-      :style="{ 'background-color': num == index ? '#4D70FF' : '' }"
+      :style="{ 'background-color': num == d.path ? '#4D70FF' : '' }"
     >
       <div class="tree-chi">
         <div>图标</div>
@@ -17,12 +17,12 @@
 </template>
 
 <script setup lang="ts">
-import { TreeFn, onChange, bookList, bookSelection } from "@/tools/function";
+import { TreeFn, onChange, bookList, bookObject } from "@/tools/function";
 import { tree } from "@/tools/tools";
 import { reactive, onMounted, ref, defineEmits, watchEffect, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import { rou } from "@/page/index";
-let num = ref(0);
+let num = ref("");
 const router = useRouter();
 const route = useRoute();
 let $emit = defineEmits(["onRouter"]);
@@ -31,16 +31,11 @@ let listBook = reactive({
 });
 // 菜单切换
 function onTree(d: rou, index: number): void {
-  stop();
-  num.value = index;
+  // stop();
+  num.value = d.path;
   let some = bookList.list.some((res: rou) => res.path == d.path);
-  if (!some) {
-    onChange(d);
-  } else {
-    bookSelection(d);
-  }
-  
   router.push(d.path);
+  onChange(d, some);
   $emit("onRouter", d);
 }
 
@@ -50,15 +45,13 @@ let listInfo = reactive({
 });
 
 // 监听路由获取颜色
-const stop = watchEffect((onclose) => {
-  num.value = router.currentRoute.value.meta.index as number;
-});
+// const stop = watchEffect((onclose) => {
+//   num.value = router.currentRoute.value.path as string;
+// });
 
 // 监听标签切换改版颜色和路由
-watch(bookList.list, (newValue, oldValue) => {
-  if (newValue.length > 0) {
-  
-  }
+watch(route, (newValue, oldValue) => {
+  num.value = newValue.path;
 });
 onMounted(() => {});
 </script>
