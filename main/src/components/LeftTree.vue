@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import { TreeFn, onChange, bookList, bookSelection } from "@/tools/function";
 import { tree } from "@/tools/tools";
-import { reactive, onMounted, ref, defineEmits, watchEffect } from "vue";
+import { reactive, onMounted, ref, defineEmits, watchEffect, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { rou } from "@/page/index";
 let num = ref(0);
@@ -39,6 +39,7 @@ function onTree(d: rou, index: number): void {
   } else {
     bookSelection(d);
   }
+  
   router.push(d.path);
   $emit("onRouter", d);
 }
@@ -51,6 +52,13 @@ let listInfo = reactive({
 // 监听路由获取颜色
 const stop = watchEffect((onclose) => {
   num.value = router.currentRoute.value.meta.index as number;
+});
+
+// 监听标签切换改版颜色和路由
+watch(bookList.list, (newValue, oldValue) => {
+  if (newValue.length > 0) {
+  
+  }
 });
 onMounted(() => {});
 </script>
