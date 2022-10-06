@@ -1,5 +1,6 @@
 import { reactive, ref } from 'vue'
 import { rou } from '@/page/index'
+import { on } from 'events'
 // 转树状
 export interface list {
   name: string,

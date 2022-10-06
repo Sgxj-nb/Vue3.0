@@ -58,10 +58,6 @@ function onBook(d: rou, index: number) {
 watch(bookObject, (newValue: rou, oldValue) => {
   numCopy.value = newValue.path;
 });
-
-watch(bookList.list, (newValue: rou, oldValue) => {
-  numCopy.value = bookList.list[bookList.list.length - 1].path;
-});
 </script>
 
 <style scoped>
