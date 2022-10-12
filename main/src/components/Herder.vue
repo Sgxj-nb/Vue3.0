@@ -11,9 +11,6 @@
       </div>
       <div style="flex: 1; visibility: hidden">s</div>
       <div class="S-right">
-        <span></span>
-        <span></span>
-        <span></span>
         <span><img :src="img" alt="" /></span>
         <span>管理员</span>
         <span>
@@ -44,6 +41,7 @@ let titleName = title;
 }
 .S-right {
   padding-right: 20px;
+  cursor: pointer;
 }
 .S-right > span {
   display: inline-block;

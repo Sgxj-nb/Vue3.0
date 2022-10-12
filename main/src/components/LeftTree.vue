@@ -53,7 +53,18 @@ let listInfo = reactive({
 watch(route, (newValue, oldValue) => {
   num.value = newValue.path;
 });
-onMounted(() => {});
+onMounted(() => {
+  // 如果说第一次路由上有合适的路由直接匹配选中
+  if (route.path) {
+    num.value = route.path;
+    for (let i = 0; i < listInfo.list.length; i++) {
+      if (route.path == listInfo.list[i].path) {
+        bookList.list = ref([listInfo.list[i]]);
+      }
+    }
+    bookObject.value = bookList.list[0];
+  }
+});
 </script>
 
 <style scoped>

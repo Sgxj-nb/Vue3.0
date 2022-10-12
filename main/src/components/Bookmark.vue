@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="bookPage">
-      <ul v-if="book.length > 0">
+      <ul v-if="bookList.list.length > 0">
         <li
           class="page-hover"
           v-for="(d, index) in bookList.list"
@@ -35,6 +35,7 @@ const route = useRoute();
 let book = bookList.list;
 let num = ref(-1);
 let numCopy = ref("");
+
 // 鼠标删除标签事件
 function onDel(d: rou, index: number) {
   onRemote(d, index);
