@@ -15,7 +15,7 @@
         >
           <span></span> <span>{{ d.name }}</span>
           <span @click.stop="onDel(d, index)" class="icon"
-            ><close-outlined v-if="numCopy !== d.path"
+            ><close-outlined v-if="bookList.list.length !== 1"
           /></span>
         </li>
       </ul>
@@ -39,15 +39,18 @@ let numCopy = ref("");
 // 鼠标删除标签事件
 function onDel(d: rou, index: number) {
   onRemote(d, index);
+  router.go(-1);
 }
 
-//  鼠标事件
+// 鼠标事件
 function onMousemove(d, index: any) {
   num.value = index;
 }
+
 function mouseout() {
   num.value = -1;
 }
+
 // 标签点击事件
 function onBook(d: rou, index: number) {
   numCopy.value = d.path;
@@ -57,6 +60,12 @@ function onBook(d: rou, index: number) {
 
 // 监听点击当前值选中颜色变化
 watch(bookObject, (newValue: rou, oldValue) => {
+  console.log(11111);
+  numCopy.value = newValue.path;
+});
+
+// 监听页签关掉触发颜色选中
+watch(route, (newValue, oldValue) => {
   numCopy.value = newValue.path;
 });
 </script>

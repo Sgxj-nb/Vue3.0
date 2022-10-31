@@ -7,14 +7,26 @@
       okText="确认"
       cancelText="取消"
     >
-      <div>我是修改面</div>
+      <div>
+        <a-form :model="form">
+          <a-form-item label="旧密码" name="aaaaa">
+            <a-input></a-input>
+          </a-form-item>
+          <a-form-item label="新密码">
+            <a-input></a-input>
+          </a-form-item>
+          <a-form-item label="确认密码">
+            <a-input></a-input>
+          </a-form-item>
+        </a-form>
+      </div>
     </a-modal>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-import { Modal } from "ant-design-vue";
+import { Modal, Form, FormItem, Input } from "ant-design-vue";
 
 const props = defineProps({
   // 弹出层控制参数
@@ -22,6 +34,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+});
+
+// 表单参数
+let form = reactive({
+  
 });
 
 const emit = defineEmits(["onClose"]);
