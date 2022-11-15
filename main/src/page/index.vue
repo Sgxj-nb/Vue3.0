@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { ref, shallowRef, watchEffect } from "vue";
+import { onMounted, ref, shallowRef, reactive } from "vue";
 import Herder from "@/components/Herder.vue";
 import LeftTree from "@/components/LeftTree.vue";
 import Bookmark from "@/components/Bookmark.vue";
-import { storeToRefs } from "pinia";
-import { userConten } from "@/pinia/index";
+import Router from "@/router/index";
+import useCurrentInstance from "@/axios/requst";
+
 import { rou } from "./index";
-const { userObject } = storeToRefs(userConten());
 // 获取菜单改变视图
 function onRouter(d: rou<object>): void {}
 </script>
@@ -54,7 +54,7 @@ function onRouter(d: rou<object>): void {}
   top: 0;
   z-index: 2000;
   height: 54px;
-  border-bottom: 9\1px solid #fbfbfb;
+  border-bottom: 1px solid #fbfbfb;
 }
 .page-main {
   min-width: 1200px;

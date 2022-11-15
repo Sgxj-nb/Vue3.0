@@ -6,6 +6,8 @@
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw, useRouter } from 'vue-router';
 import { tree } from '@/tools/tools'
+import { userConten } from '@/pinia/index'
+// import { Menu } from '@/tools/function'
 import Home from '@/page/index.vue'
 
 const routes: Array<RouteRecordRaw> = [{
@@ -67,13 +69,18 @@ const router = createRouter({
 })
 
 // 判断是否登录(路由前置拦截)
-router.beforeEach(function (to, from, next) {
+router.beforeEach(async function (to, from, next) {
   if (!localStorage.getItem('token') && to.name !== 'Login') {
     document.title = '登录'
-    //禁用回退
     window.location.hash = "#/login";
     window.location.reload()
   } else {
+    // 如果说有token开始鉴权路由
+    // router.addRoute()
+    // if (!userConten().userMenu) {
+    //   await Menu()
+    //   console.log(userConten().userMenu, '我拿到我的菜单了');
+    // }
     next()
   }
 })

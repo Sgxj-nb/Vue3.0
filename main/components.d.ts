@@ -16,6 +16,7 @@ declare module '@vue/runtime-core' {
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
     AModal: typeof import('ant-design-vue/es')['Modal']
+    ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
     Bookmark: typeof import('./src/components/Bookmark.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Herder: typeof import('./src/components/Herder.vue')['default']

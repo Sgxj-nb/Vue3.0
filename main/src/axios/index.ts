@@ -8,11 +8,11 @@ const axiosRequest = {
       url: window.origin + url,
       method: method ? method : 'POST',
       data: data,
-      herder: {
+      headers: {
+        'x-token': localStorage.getItem('token') || ''
       }
     } as object).then((resolve: AxiosRequestConfig) => {
       const res = resolve.data
-      console.log(res, 'aaaa');
       if (res.code === 7) {
         console.log(router, 'pppp');
         removeToken()
